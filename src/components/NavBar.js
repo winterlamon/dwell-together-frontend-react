@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../dwell-logo-full.svg';
-import { Icon, Navbar, NavItem} from 'react-materialize'
+import { Navbar, NavItem} from 'react-materialize'
 
 
 class NavBar extends Component {

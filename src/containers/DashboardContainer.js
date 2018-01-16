@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import { Button, ControlLabel, FormControl, FormGroup, HelpBlock } from 'react-bootstrap';
+import { Button, Col, Input, Row} from 'react-materialize';
 
 
 const DashboardContainer = () => {
     return (
       <div className="dashboard">
+        <Row>
+        <Col s={8} className="section">
+        <Row className="section">
+          <Col className="section">
+            <div>
+              <h3>Welcome home, Winter!</h3>
+            </div>
+          </Col>
+        </Row>
+      </Col>
+      <Col s={4} className="section">
+        <Row className="section">
+          <Row className="section">
+            <div>
+              <h3>Candy Mountain</h3>
+            </div>
+          </Row>
+          <Col className="section">
+            <Button className="button">Add Member to Household</Button>
+          </Col>
+        </Row>
+      </Col>
+      </Row>
+
+
+
         <div>
-          <h1>Welcome home, Winter!</h1>
         </div>
         <div>
         </div>
@@ -15,21 +40,10 @@ const DashboardContainer = () => {
         </div>
         <div>
         </div>
-        <div>
-        </div>
-        <div className="col-md-4">
-          <h1>Create New List</h1>
-        <div className="new-list">
+        <div className="section">
+          <h3>Create New List</h3>
+        <div className="section">
             <form>
-              <FormGroup>
-                <ControlLabel for="listName">List Name</ControlLabel>
-                <FormControl type="text" name="listName" id="listName" />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel for="category">Category</ControlLabel>
-                <FormControl type="text" name="category" id="category" />
-              </FormGroup>
-              <Button className="button">Create List</Button>
             </form>
           </div>
         </div>

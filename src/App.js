@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Route, Redirect, Switch, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, withRouter } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import LandingPageContainer from './containers/LandingPageContainer';
 import DashboardContainer from './containers/DashboardContainer';
@@ -15,6 +15,7 @@ class App extends Component {
     console.log(this.props);
 
     return (
+      <Router>
         <div>
           <NavBar />
           <Route
@@ -61,7 +62,17 @@ class App extends Component {
             )
           }}
           />
+          <Route
+            exact
+            path="/createhousehold"
+            render={props => {
+              return (<CreateHousehold
+                {...props} />
+            )
+          }}
+          />
       </div>
+    </Router>
     );
   }
 }

@@ -1,7 +1,7 @@
 /* ===== global ===== */
 
 a {
-  color: #000000;
+  color: #FFFFFF;
 }
 
 body {
@@ -9,7 +9,7 @@ body {
     rgba(125,65,125, .9),
     rgba(60,60,60, .2)); */
     /* url('https://static.pexels.com/photos/276724/pexels-photo-276724.jpeg'); */
-  background-color: rgba(127,205,240, .3);
+  background-color: rgba(127,205,240, .2);
   /* background-image: url('https://static.pexels.com/photos/276724/pexels-photo-276724.jpeg'); */
   font-family: 'Montserrat', sans-serif;
   margin: 0;
@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .button {
   background: #000000;
+  border-radius: 5px;
   color: #FFFFFF;
   text-align: center;
   text-transform: uppercase;
@@ -30,8 +31,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   /* margin: 0; */
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding: 3rem;
+  /* padding-top: 3rem;
+  padding-bottom: 3rem; */
 }
 
 .glyphicon {
@@ -42,6 +44,11 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   padding-top: 3rem;
   padding-bottom: 3rem;
+}
+
+.section {
+  border-color: #000000;
+  border-style: solid;
 }
 
 /* ===== landing page ===== */
@@ -90,13 +97,33 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== login + signup ===== */
 
 .login {
-  /* padding: 4rem; */
+  margin-top: 10rem;
+  padding: 4rem;
+  text-align: center;
+}
+
+.login-form {
+  background-color: #FFFFFF;
+  border-color: #999999;
+  border-radius: 1.5rem;
+  border-style: solid;
+  /* padding: 10rem; */
+  text-align: center;
 }
 
 .signup {
+  margin-top: 10rem;
+  /* padding: 4rem; */
   text-align: center;
-  /* margin: 10rem; */
-  /* padding: 8rem; */
+}
+
+.signup-form {
+  background-color: #FFFFFF;
+  border-color: #999999;
+  border-radius: 1.5rem;
+  border-style: solid;
+  /* padding: 10rem; */
+  text-align: center;
 }
 
 .form {
