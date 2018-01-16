@@ -53,6 +53,16 @@ h1, h2, h3, h4, h5, h6 {
   border-style: solid;
 }
 
+/* ===== dashboard ===== */
+
+
+
+.household {
+  background-color: #e0e0e0;
+  border-color: #999999;
+  border-style: solid;
+}
+
 /* ===== landing page ===== */
 
 .landing-page {
@@ -96,9 +106,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-.dashboard {
-  background-color: #333333;
-}
 
 /* ===== login + signup ===== */
 
