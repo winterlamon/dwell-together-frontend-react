@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, Col, Row} from 'react-materialize';
+import NewHouseholdMemberForm from '../components/NewHouseholdMemberForm';
+import HouseholdMemberList from '../components/HouseholdMemberList';
 
 
 const DashboardContainer = (props) => {
@@ -23,17 +25,18 @@ console.log('dashboard user', props.currentUser)
               </Col>
             </Row>
           </Col>
-          <Col s={4} className="section">
-            <Row className="section">
-              <Row className="section">
+          <Col s={4} className="household center">
+              <Row className="sections">
                 <div>
-                  <h3>Candy Mountain</h3>
+                  <h3>{props.currentUser.household.nickname}</h3>
                 </div>
               </Row>
-              <Col className="section">
-                <Button className="button">Add Member to Household</Button>
-              </Col>
-            </Row>
+              <Row>
+                <NewHouseholdMemberForm currentUser={props.currentUser}/>
+              </Row>
+              <Row>
+                <HouseholdMemberList currentUser={props.currentUser}/>
+              </Row>
           </Col>
         </Row>
       </div>

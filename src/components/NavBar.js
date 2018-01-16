@@ -30,7 +30,7 @@ class NavBar extends Component {
                 (
                   <div className="navbar-contents">
                     <NavItem href="/dashboard" className="nav-link" >DASHBOARD</NavItem>
-                    <NavItem href="/profile" className="nav-link">PROFILE</NavItem>
+                    {/* <NavItem href="/profile" className="nav-link">PROFILE</NavItem> */}
                     <NavItem onClick={() => {
                        this.props.history.push('/login');
                        this.props.handleLogout();

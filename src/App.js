@@ -13,9 +13,8 @@ import api from './services/api'
 class App extends Component {
   state = {
    auth: {
-     currentUser: {}},
-   household: {},
- }
+     currentUser: {}}
+  }
 
   handleLogin = user => {
     const currentUser = {currentUser: user};
@@ -38,10 +37,10 @@ class App extends Component {
   componentDidMount() {
     if(api.auth.token) {
       api.auth.getCurrentUser()
-      .then(data =>
-        this.setState({ auth: {currentUser: data}})
-      )
-      // .then(() => this.props.history.push('/dashboard'))
+      .then(data => {
+        this.setState({ auth: {currentUser: data}});
+        this.props.history.push('/dashboard')
+      })
     }
   }
 
@@ -122,7 +121,7 @@ class App extends Component {
             )
           }}
           />
-          <Route
+        <Route
             exact
             path="/createhousehold"
             render={props => {
