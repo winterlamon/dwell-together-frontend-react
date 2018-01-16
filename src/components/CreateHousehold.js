@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Input, Row} from 'react-materialize';
+import { Button, Col, Row} from 'react-materialize';
 
 class CreateHousehold extends Component {
   render() {
@@ -9,6 +9,7 @@ class CreateHousehold extends Component {
             <Col s={3}></Col>
           <Col s={6} className="login-form">
             <div className="container">
+              <p>If you would like to join an existing household, please contact the household's admin.</p>
               <h3>Create New Household</h3>
                 <Row>
                   <form>

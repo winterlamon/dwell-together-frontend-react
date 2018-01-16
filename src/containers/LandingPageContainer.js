@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import JumbotronComponent from '../components/landing-page/Jumbotron'
 import About from '../components/landing-page/About'
 import Features from '../components/landing-page/Features'

@@ -44,6 +44,8 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   padding-top: 3rem;
   padding-bottom: 3rem;
+  text-align: center;
+  vertical-align: center;
 }
 
 .section {

@@ -1,8 +1,38 @@
 import React, { Component } from 'react';
-import { Button, Col, Input, Row} from 'react-materialize';
+import { Button, Col, Row} from 'react-materialize';
+import api from '../services/api'
+
 
 class Login extends Component {
+  state ={
+    error: false,
+    fields: {
+      email: '',
+      password: ''
+    }
+  }
+
+  handleChange = event => {
+    const newField = {...this.state.fields, [event.target.name]: event.target.value}
+    this.setState({ fields: newField })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    api.auth.login(this.state.fields.email, this.state.fields.password)
+      .then(res => {
+        if (res.error) {
+          this.setState({ error: true }, alert(res.error));
+        } else {
+          this.props.handleLogin(res);
+          this.props.history.push('/dashboard');
+        }
+      })
+  }
+
   render() {
+
+    const { fields } = this.state
 
     return (
       <div className="login">
@@ -22,8 +52,8 @@ class Login extends Component {
                         type="email"
                         label="Email"
                         placeholder="awesomeroommate@ourhome.com"
-                        // value={fields.email}
-                        // onChange={this.handleChange}
+                        value={fields.email}
+                        onChange={this.handleChange}
                       />
                     </label>
                     <label>
@@ -35,13 +65,13 @@ class Login extends Component {
                         type="password"
                         label="Password"
                         placeholder="mypassword"
-                        // value={fields.password}
-                        // onChange={this.handleChange}
+                        value={fields.password}
+                        onChange={this.handleChange}
                       />
                     </label>
                   </form>
                   <Button
-                    // onClick={this.handleSubmit}
+                    onClick={this.handleSubmit}
                     className="button"
                     waves='light' node='a'>Log In</Button>
                   </Row>
