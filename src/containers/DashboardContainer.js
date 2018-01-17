@@ -12,7 +12,7 @@ const DashboardContainer = props => {
   return (
     <div className="dashboard">
       {household.id === 1 ? (
-        <CreateHousehold />
+        <CreateHousehold currentUser={props.currentUser} />
       ) : (
         <div>
           <Row>

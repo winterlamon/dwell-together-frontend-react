@@ -35,11 +35,20 @@ const getCurrentUser = () => {
   }).then(res => res.json());
 };
 
+const addUserToHousehold = (user, household) => {
+  return fetch(`${baseURL}/users/${user.id}`, {
+    method: "PATCH",
+    headers: headers,
+    body: JSON.stringify({ household_id: household.id })
+    // }).then(res => res.json())
+  });
+};
+
 const removeUserFromHousehold = user => {
   return fetch(`${baseURL}/users/${user.id}`, {
     method: "PATCH",
     headers: headers,
-    body: JSON.stringify({ household_id: 0 })
+    body: JSON.stringify({ household_id: 1 })
     // }).then(res => res.json())
   });
 };
@@ -75,7 +84,7 @@ const getLists = household => {
 };
 
 const createListItem = (name, description, due_date, user, list) => {
-  return fetch(`${baseURL}/lists`, {
+  return fetch(`${baseURL}/list_items`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({
@@ -90,12 +99,22 @@ const createListItem = (name, description, due_date, user, list) => {
   });
 };
 
+const updateListItem = list_item => {
+  return fetch(`${baseURL}/list_items`, {
+    method: "PATCH",
+    headers: headers,
+    body: JSON.stringify({ list_item })
+    // }).then(res => res.json())
+  });
+};
+
 export default {
   auth: {
     token,
     login,
     getCurrentUser,
     signup,
+    addUserToHousehold,
     removeUserFromHousehold
   },
   households: {
@@ -107,6 +126,7 @@ export default {
     getLists
   },
   listItems: {
-    createListItem
+    createListItem,
+    updateListItem
   }
 };

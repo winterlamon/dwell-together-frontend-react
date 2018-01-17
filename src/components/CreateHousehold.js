@@ -1,46 +1,74 @@
-import React, { Component } from 'react';
-import { Button, Col, Row} from 'react-materialize';
+import React, { Component } from "react";
+import { Button, Col, Row } from "react-materialize";
+import api from "../services/api";
 
 class CreateHousehold extends Component {
+  state = {
+    error: false,
+    nickname: ""
+  };
+
+  handleChange = event => {
+    this.setState({ nickname: event.target.value });
+  };
+
+  handleClick = event => {
+    event.preventDefault();
+    api.households.createHousehold(this.state.nickname).then(res => {
+      if (res.error) {
+        this.setState({ error: true }, console.log(res.error));
+      } else {
+        this.props.history.push("/dashboard");
+      }
+    });
+  };
+
   render() {
+    console.log("create household", this.state);
+
     return (
       <div className="login">
         <Row>
-            <Col s={3}></Col>
+          <Col s={3} />
           <Col s={6} className="login-form">
             <div className="container">
-              <p>If you would like to join an existing household, please contact the household's admin.</p>
-              <h3>Create New Household</h3>
-                <Row>
-                  <form>
-                    <label>
-                      Household Nickname
-                      <input
-                        s={6}
-                        name="nickname"
-                        className="center"
-                        type="text"
-                        label="nickname"
-                        placeholder="Candy Mountain"
-                        // value={fields.email}
-                        // onChange={this.handleChange}
-                      />
-                    </label>
-                  </form>
-                  <Button
-                    // onClick={this.handleSubmit}
-                    className="button"
-                    waves='light' node='a'>Create Household</Button>
-                  </Row>
-                <div>
-                  <Row>
-                  </Row>
-                </div>
+              <p>
+                If you would like to join an existing household, please contact
+                a member of the household to add you.
+              </p>
+              <h3>Create a New Household</h3>
+              <Row>
+                <form>
+                  <label>
+                    Household Nickname
+                    <input
+                      s={6}
+                      name="nickname"
+                      className="center"
+                      type="text"
+                      label="nickname"
+                      placeholder="Candy Mountain"
+                      value={this.state.nickname}
+                      onChange={this.handleChange}
+                    />
+                  </label>
+                </form>
+                <Button
+                  // onClick={this.handleSubmit}
+                  className="button"
+                  waves="light"
+                  node="a"
+                >
+                  Create Household
+                </Button>
+              </Row>
+              <div>
+                <Row />
               </div>
-            </Col>
-            <Col s={3}></Col>
+            </div>
+          </Col>
+          <Col s={3} />
         </Row>
-
       </div>
     );
   }
