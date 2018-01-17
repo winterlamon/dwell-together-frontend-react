@@ -7,11 +7,11 @@ import CreateHousehold from "../components/CreateHousehold";
 const DashboardContainer = props => {
   console.log("dashboard user", props.currentUser);
 
-  const household = !!props.currentUser.household;
+  const household = props.currentUser.household;
 
   return (
     <div className="dashboard">
-      {!household ? (
+      {household.id === 1 ? (
         <CreateHousehold />
       ) : (
         <div>
