@@ -9,7 +9,9 @@ body {
     rgba(125,65,125, .9),
     rgba(60,60,60, .2)); */
     /* url('https://static.pexels.com/photos/276724/pexels-photo-276724.jpeg'); */
-  background-color: rgba(127,205,240, .2);
+  /* background-color: rgba(127,205,240, .2); */
+  background-color: #FFFFFF;
+
   /* background-image: url('https://static.pexels.com/photos/276724/pexels-photo-276724.jpeg'); */
   font-family: 'Montserrat', sans-serif;
   margin: 0;
@@ -58,9 +60,46 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .household {
-  background-color: #e0e0e0;
+  background-color: rgba(127,205,240, .2);
+
+  /* background-color: #FFFFFF; */
   border-color: #999999;
   border-style: solid;
+  /* border-left: #e0e0e0; */
+  border-top: #e0e0e0;
+  border-bottom: #e0e0e0;
+  border-right: #e0e0e0;
+}
+
+.household-members-list {
+  padding-bottom: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+
+}
+
+.member {
+  border-color: #e0e0e0;
+  /* border-bottom: #e0e0e0; */
+  border-left: #e0e0e0;
+  border-right: #e0e0e0;
+  border-style: solid;
+  border-top: #e0e0e0;
+  border-width: 2px;
+  position: relative;
+  /* transform: translate(-50%, -50%); */
+}
+
+.member-button {
+  padding-top: .5rem;
+}
+
+.member-remove-button {
+  background: #FF0000;
+  border-radius: 5px;
+  color: #FFFFFF;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 /* ===== landing page ===== */
@@ -106,7 +145,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-
 /* ===== login + signup ===== */
 
 .login {
@@ -141,8 +179,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .form {
   background-color: #FFFFFF;
+  border-color: #999999;
+  border-radius: 1rem;
+  border-style: solid;
+  border-width: 3px;
   /* margin: 15rem; */
-  opacity: .7;
+  opacity: 1;
   /* padding-top: 4rem;
   padding-bottom: 6rem;
   padding-left: 6rem;

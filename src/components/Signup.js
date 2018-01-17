@@ -27,14 +27,13 @@ class Signup extends Component {
         if (res.error) {
           this.setState({ error: true }, console.log(res.error));
         } else {
-          this.props.handleSignup(res);
           this.props.history.push('/dashboard');
         }
       });
   }
 
   render() {
-    console.log(this.state)
+    console.log('signup state', this.state)
     return (
       <div className="signup" >
         <Row>

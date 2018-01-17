@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { Button, Col, Input, Row} from 'react-materialize';
-
+import React, { Component } from "react";
+// import { Button, Col, Input, Row} from 'react-materialize';
 
 class Profile extends Component {
   render() {
@@ -9,17 +8,13 @@ class Profile extends Component {
         <div>
           <h1>Winter LaMon</h1>
         </div>
-        <div className="col-md-8">
-        </div>
-        <div>
-        </div>
-        <div>
-        </div>
-        <div>
-        </div>
+        <div className="col-md-8" />
+        <div />
+        <div />
+        <div />
         <div className="col-md-4">
           <h1>Create New List</h1>
-        <div className="new-list">
+          <div className="new-list">
             <form>
               <FormGroup>
                 <ControlLabel for="listName">List Name</ControlLabel>

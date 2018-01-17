@@ -9,14 +9,17 @@ class NewHouseholdMemberForm extends React.Component {
     return (
       <div className="household-members-list form">
         <Row>
-          <div>
-            Add New Member
-          </div>
+          {/* <div>
+            <h5>Add New Member</h5>
+          </div> */}
         </Row>
-        <Row className="section">
+        <Row>
             <label>
+              <h5>Add New Member</h5>
                   <input
                     type="text"
+                    className="center"
+                    placeholder="Member Email"
                     // value={this.state.value}
                     // onChange={this.handleChange}
                   />
