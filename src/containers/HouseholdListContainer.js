@@ -3,10 +3,10 @@ import { Row } from "react-materialize";
 import HouseholdList from "../components/HouseholdList";
 
 const HouseholdListContainer = props => {
-  const list = props.currentUser.household.lists;
-  const allHouseholdLists = household.lists.map(list => (
+  const lists = props.currentUser.household.lists;
+  const allHouseholdLists = lists.map(list => (
     <HouseholdList
-      key={`household-list-` + household.list.id.toString()}
+      key={`household-list-` + list.id.toString()}
       list={list}
       currentUser={props.currentUser}
     />
