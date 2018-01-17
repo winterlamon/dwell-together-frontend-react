@@ -18,7 +18,8 @@ class App extends Component {
   state = {
     auth: {
       currentUser: {}
-    }
+    },
+    users: []
   };
 
   handleLogin = user => {
@@ -41,13 +42,16 @@ class App extends Component {
     if (api.auth.token) {
       api.auth.getCurrentUser().then(data => {
         this.setState({ auth: { currentUser: data } });
-        this.props.history.push("/dashboard");
       });
     }
+    this.props.history.push("/dashboard");
+    api.users.getAllUsers().then(data => {
+      this.setState({ users: data });
+    });
   }
 
   render() {
-    console.log("state in App", this.state);
+    console.log("state in App", this.state.users);
     const loggedIn = !!this.state.auth.currentUser.id;
 
     return (
@@ -108,6 +112,7 @@ class App extends Component {
                 <DashboardContainer
                   {...props}
                   currentUser={this.state.auth.currentUser}
+                  users={this.state.users}
                 />
               );
             }}
@@ -138,8 +143,8 @@ class App extends Component {
                   currentUser={this.state.auth.currentUser}
                 />
               );
-            }}
-          /> */}
+            }} */}
+          />
         </div>
       </Router>
     );

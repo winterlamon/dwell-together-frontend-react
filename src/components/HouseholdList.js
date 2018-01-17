@@ -2,22 +2,28 @@ import React from "react";
 import { Button, Col, Row } from "react-materialize";
 import api from "../services/api";
 
-class HouseholdMember extends React.Component {
-  handleClick = event => {
-    event.preventDefault();
-    api.users.removeUserFromHousehold(this.props.member);
-  };
+class HouseholdList extends React.Component {
+  const list = this.props.list
+
+  state = {
+    list: {
+      name: list.name,
+      category: list.category,
+    }
+  }
+
+
 
   render() {
-    const member = this.props.member;
+    const list = this.props.list;
 
     return (
       <div className="">
         {/* <Card
               className="card"
-              title={member.first_name + " " + member.last_name}
+              title={list.first_name + " " + list.last_name}
               actions={[<Button
-                            key={"venue-button-" + member.id}
+                            key={"venue-button-" + list.id}
                             onClick={this.handleClick}>
                             Remove
                           </Button>
@@ -25,13 +31,13 @@ class HouseholdMember extends React.Component {
             </Card> */}
         <Row>
           <Col s={8}>
-            <h5>{member.first_name + " " + member.last_name}</h5>
+            <h5>{list.first_name + " " + list.last_name}</h5>
           </Col>
           <Col s={4}>
-            <div className="member-button">
+            <div className="list-button">
               <Button
-                className="member-remove-button"
-                key={"member-button-" + member.id}
+                className="list-remove-button"
+                key={"list-button-" + list.id}
                 onClick={this.handleClick}
               >
                 Remove
@@ -44,4 +50,4 @@ class HouseholdMember extends React.Component {
   }
 }
 
-export default HouseholdMember;
+export default HouseholdList;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Col, Row } from "react-materialize";
 import NewHouseholdMemberForm from "../components/NewHouseholdMemberForm";
-import HouseholdMemberList from "../components/HouseholdMemberList";
+import HouseholdMemberListContainer from "./HouseholdMemberListContainer";
 import CreateHousehold from "../components/CreateHousehold";
 
 const DashboardContainer = props => {
@@ -44,10 +44,13 @@ const DashboardContainer = props => {
                 </div>
               </Row>
               <Row>
-                <NewHouseholdMemberForm currentUser={props.currentUser} />
+                <NewHouseholdMemberForm
+                  currentUser={props.currentUser}
+                  users={props.users}
+                />
               </Row>
               <Row>
-                <HouseholdMemberList currentUser={props.currentUser} />
+                <HouseholdMemberListContainer currentUser={props.currentUser} />
               </Row>
             </Col>
           </Row>

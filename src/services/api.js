@@ -35,6 +35,12 @@ const getCurrentUser = () => {
   }).then(res => res.json());
 };
 
+const getAllUsers = () => {
+  return fetch(`${baseURL}/users`, {
+    headers: headers
+  }).then(res => res.json());
+};
+
 const addUserToHousehold = (user, household) => {
   return fetch(`${baseURL}/users/${user.id}`, {
     method: "PATCH",
@@ -77,6 +83,15 @@ const createList = (household, name, category) => {
   });
 };
 
+const updateList = list => {
+  return fetch(`${baseURL}/lists`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ list })
+    // }).then(res => res.json())
+  });
+};
+
 const getLists = household => {
   return fetch(`${baseURL}/users/${household.id}`)
     .then(res => res.json())
@@ -113,7 +128,10 @@ export default {
     token,
     login,
     getCurrentUser,
-    signup,
+    signup
+  },
+  users: {
+    getAllUsers,
     addUserToHousehold,
     removeUserFromHousehold
   },
@@ -123,6 +141,7 @@ export default {
   },
   lists: {
     createList,
+    updateList,
     getLists
   },
   listItems: {

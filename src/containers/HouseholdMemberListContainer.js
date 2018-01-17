@@ -1,8 +1,10 @@
 import React from "react";
 import { Row } from "react-materialize";
-import HouseholdMember from "./HouseholdMember";
+import HouseholdMember from "../components/HouseholdMember";
 
-const HouseholdMemberList = props => {
+const HouseholdMemberListContainer = props => {
+  console.log("props in HouseholdMemberListContainer", props.currentUser);
+
   const household = props.currentUser.household;
   const allHouseholdMembers = household.members.map(member => (
     <HouseholdMember
@@ -24,4 +26,4 @@ const HouseholdMemberList = props => {
   );
 };
 
-export default HouseholdMemberList;
+export default HouseholdMemberListContainer;
