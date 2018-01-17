@@ -16,15 +16,15 @@ const login = (email, password) => {
   }).then(res => res.json());
 };
 
-const signup = (firstName, lastName, email, password) => {
+const signup = (first_name, last_name, email, password) => {
   return fetch(`${baseURL}/users`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({
-      first_name: firstName,
-      last_name: lastName,
-      email: email,
-      password: password
+      first_name,
+      last_name,
+      email,
+      password
     })
   });
 };
@@ -48,7 +48,7 @@ const createHousehold = nickname => {
   return fetch(`${baseURL}/households`, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify({ nickname: nickname })
+    body: JSON.stringify({ nickname })
     // }).then(res => res.json())
   });
 };
@@ -74,14 +74,14 @@ const getLists = household => {
     .then(console.log);
 };
 
-const createListItem = (name, description, dueDate, user, list) => {
+const createListItem = (name, description, due_date, user, list) => {
   return fetch(`${baseURL}/lists`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({
       name,
       description,
-      due_date: dueDate,
+      due_date,
       user_id: user.id,
       list_id: list.id,
       completed: false
