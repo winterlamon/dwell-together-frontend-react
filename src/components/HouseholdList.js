@@ -1,35 +1,32 @@
 import React from "react";
-import { Button, Card, Col, Row } from "react-materialize";
+import { Button, Card } from "react-materialize";
 import api from "../services/api";
 
-class HouseholdList extends React.Component {
-  state = {
-    completed: false
-  };
+const HouseholdList = props => {
+  const list = props.list;
 
-  render() {
-    const list = this.props.list;
-
-    return (
-      <div className="list">
-        <Card
-          className="card"
-          title={list.name}
-          actions={[
-            <Button
-              className="list-remove-button"
-              key={"list-button-" + list.id}
-              onClick={this.handleClick}
-            >
-              Delete List
-            </Button>
-          ]}
-        >
-          <p>Category: {list.category}</p>
-        </Card>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="list">
+      <Card
+        className="card"
+        title={list.name}
+        actions={[
+          <Button
+            className="list-remove-button"
+            key={"list-button-" + list.id}
+            onClick={() => {
+              api.lists.deleteList(list);
+              props.refreshCurrentUser();
+            }}
+          >
+            Delete List
+          </Button>
+        ]}
+      >
+        <p>Category: {list.category}</p>
+      </Card>
+    </div>
+  );
+};
 
 export default HouseholdList;

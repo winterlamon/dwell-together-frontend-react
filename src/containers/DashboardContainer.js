@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Route, withRouter } from "react-router-dom";
 import { Button, Col, Row } from "react-materialize";
 import NewHouseholdMemberForm from "../components/NewHouseholdMemberForm";
 import HouseholdMemberListContainer from "./HouseholdMemberListContainer";
@@ -40,13 +39,17 @@ const DashboardContainer = props => {
                 </Col>
               </Row>
               <Row>
-                <Col>
-                  <NewListForm currentUser={props.currentUser} />
+                <Col className="section">
+                  <NewListForm
+                    currentUser={props.currentUser}
+                    refreshCurrentUser={props.refreshCurrentUser}
+                  />
                 </Col>
-                <Col>
+                <Col className="section">
                   <HouseholdListContainer
                     currentUser={props.currentUser}
                     household={household}
+                    refreshCurrentUser={props.refreshCurrentUser}
                   />
                 </Col>
               </Row>
@@ -61,10 +64,14 @@ const DashboardContainer = props => {
                 <NewHouseholdMemberForm
                   currentUser={props.currentUser}
                   users={props.users}
+                  refreshCurrentUser={props.refreshCurrentUser}
                 />
               </Row>
               <Row>
-                <HouseholdMemberListContainer currentUser={props.currentUser} />
+                <HouseholdMemberListContainer
+                  currentUser={props.currentUser}
+                  refreshCurrentUser={props.refreshCurrentUser}
+                />
               </Row>
             </Col>
           </Row>
@@ -74,4 +81,4 @@ const DashboardContainer = props => {
   );
 };
 
-export default withRouter(DashboardContainer);
+export default DashboardContainer;

@@ -27,7 +27,8 @@ class NewHouseholdMemberForm extends React.Component {
         } else {
           this.props.history.push("/dashboard");
         }
-      });
+      })
+      .then(this.props.refreshCurrentUser());
   };
 
   render() {

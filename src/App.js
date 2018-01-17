@@ -19,7 +19,9 @@ class App extends Component {
     auth: {
       currentUser: {}
     },
-    users: []
+    users: [],
+    lists: [],
+    list_items: []
   };
 
   handleLogin = user => {
@@ -33,26 +35,41 @@ class App extends Component {
     this.setState({ auth: { currentUser: {} } });
   };
 
-  // addHouseholdToUser = (household) => {
-  //   const newHousehold = this.state.auth.currentUser.householdId
-  //   this.setState({[this.state.auth.currentUser.household]: newHousehold });
-  // }
+  refreshCurrentUser = () => {
+    // debugger;
+    this.setState(this.state);
+  };
 
-  componentDidMount() {
-    if (api.auth.token) {
-      api.auth.getCurrentUser().then(data => {
-        this.setState({ auth: { currentUser: data } });
-      });
-    }
-    this.props.history.push("/dashboard");
+  componentWillMount() {
     api.users.getAllUsers().then(data => {
       this.setState({ users: data });
     });
   }
 
+  componentDidMount() {
+    if (api.auth.token) {
+      api.auth
+        .getCurrentUser()
+        .then(data => {
+          this.setState({ auth: { currentUser: data } });
+        })
+        .then(data => {
+          this.setState({
+            lists: this.state.auth.currentUser.household.lists,
+            list_items: this.state.auth.currentUser.household.list_items
+          });
+        });
+      this.props.history.push("/dashboard");
+      // api.users.getAllUsers().then(data => {
+      //   this.setState({ users: data });
+      // });
+    }
+  }
+
   render() {
     console.log("state in App", this.state.users);
     const loggedIn = !!this.state.auth.currentUser.id;
+    // debugger;
 
     return (
       <Router>
@@ -113,6 +130,7 @@ class App extends Component {
                   {...props}
                   currentUser={this.state.auth.currentUser}
                   users={this.state.users}
+                  refreshCurrentUser={this.refreshCurrentUser}
                 />
               );
             }}

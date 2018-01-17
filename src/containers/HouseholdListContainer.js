@@ -9,6 +9,7 @@ const HouseholdListContainer = props => {
       key={`household-list-` + list.id.toString()}
       list={list}
       currentUser={props.currentUser}
+      refreshCurrentUser={props.refreshCurrentUser}
     />
   ));
 

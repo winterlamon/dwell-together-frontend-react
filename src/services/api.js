@@ -92,6 +92,15 @@ const updateList = list => {
   });
 };
 
+const deleteList = list => {
+  return fetch(`${baseURL}/lists/${list.id}`, {
+    method: "DELETE",
+    headers: headers,
+    body: JSON.stringify(list)
+    // }).then(res => res.json())
+  });
+};
+
 const getLists = household => {
   return fetch(`${baseURL}/users/${household.id}`)
     .then(res => res.json())
@@ -142,7 +151,8 @@ export default {
   lists: {
     createList,
     updateList,
-    getLists
+    getLists,
+    deleteList
   },
   listItems: {
     createListItem,
