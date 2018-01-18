@@ -1,12 +1,14 @@
 import React from "react";
 import { Button, Card } from "react-materialize";
 import api from "../services/api";
+import { connect } from "react-redux";
+import { changeHi } from "../actions";
 
 const HouseholdList = props => {
   const list = props.list;
-
+  console.log("HOUSEHOLD LIST props", props);
   return (
-    <div className="list">
+    <div className="list" onClick={props.changeHi}>
       <Card
         className="card"
         title={list.name}
@@ -29,4 +31,8 @@ const HouseholdList = props => {
   );
 };
 
-export default HouseholdList;
+const mapStateToProps = state => {
+  return { hi: state.hi };
+};
+
+export default connect(mapStateToProps, { changeHi: changeHi })(HouseholdList);

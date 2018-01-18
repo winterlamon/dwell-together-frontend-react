@@ -11,7 +11,7 @@ import DashboardContainer from "./containers/DashboardContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 import HouseholdMemberListContainer from "./containers/HouseholdMemberListContainer";
 import HouseholdListContainer from "./containers/HouseholdListContainer";
-import Signup from "./components/Signup";
+import SignupContainer from "./containers/SignupContainer";
 import Login from "./components/Login";
 import CreateHousehold from "./components/CreateHousehold";
 import api from "./services/api";
@@ -98,7 +98,7 @@ class App extends Component {
               return loggedIn ? (
                 <Redirect to="/profile" />
               ) : (
-                <Signup
+                <SignupContainer
                   {...props}
                   handleSignup={api.auth.signup}
                   currentUser={this.state.auth.currentUser}

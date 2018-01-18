@@ -65,7 +65,7 @@ class NavBar extends Component {
           ) : (
             <div className="navbar-contents">
               <NavItem href="/signup" className="nav-link">
-                SIGN UP
+                GET STARTED
               </NavItem>
               <NavItem href="/login" className="nav-link">
                 LOG IN
