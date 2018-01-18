@@ -37,13 +37,12 @@ class NewHouseholdMemberForm extends React.Component {
     return (
       <div className="household-members-list form">
         <Row>
-          {/* <div>
+          <div>
             <h5>Add New Member</h5>
-          </div> */}
+          </div>
         </Row>
         <Row>
           <label>
-            <h5>Add New Member</h5>
             <input
               type="text"
               className="center"

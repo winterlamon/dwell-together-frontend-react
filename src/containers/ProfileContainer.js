@@ -1,21 +1,33 @@
-import React, { Component } from 'react';
-import { Button, Col, Input, Row} from 'react-materialize';
+import React, { Component } from "react";
+import { Button, Col, Input, Row } from "react-materialize";
+import HouseholdListContainer from "./HouseholdListContainer";
+import UserProfileInfo from "../components/UserProfileInfo";
 
+const Profile = props => {
+  const user = props.currentUser;
+  const household = user.household;
+  const userListItems = household.list_items.filter(item => {
+    item.user_id === user.id;
+  });
 
-class Profile extends Component {
-  render() {
-    return (
-      <div className="dashboard">
-        <div>
-          <h1>Winter LaMon</h1>
-        </div>
-        <div className="col-md-8">
-        </div>
-        <div>  
-        </div>
-      </div>
-    );
-  }
-}
+  console.log("user list items", userListItems);
+
+  return (
+    <div className="profile">
+      <Row>
+        <UserProfileInfo
+          currentUser={props.currentUser}
+          household={household}
+        />
+      </Row>
+      <Row>
+        <HouseholdListContainer
+          currentUser={props.currentUser}
+          userListItems={userListItems}
+        />
+      </Row>
+    </div>
+  );
+};
 
 export default Profile;

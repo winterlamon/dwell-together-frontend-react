@@ -2,12 +2,11 @@ import React from "react";
 import { Col, Row } from "react-materialize";
 import HouseholdList from "../components/HouseholdList";
 
-const HouseholdListContainer = props => {
-  const lists = props.currentUser.household.lists;
-  const allHouseholdLists = lists.map(list => (
-    <HouseholdList
-      key={`household-list-` + list.id.toString()}
-      list={list}
+const ProfileListItemContainer = props => {
+  const allUserListItems = props.userListItems.map(item => (
+    <ListItem
+      key={`list-item-` + list.id.toString()}
+      item={item}
       currentUser={props.currentUser}
       refreshCurrentUser={props.refreshCurrentUser}
     />
@@ -17,12 +16,12 @@ const HouseholdListContainer = props => {
     <div className="household-lists">
       <Col s={12}>
         <div>
-          <h3>Lists</h3>
-          {allHouseholdLists}
+          <h3>Your Items</h3>
+          {allUserListItems}
         </div>
       </Col>
     </div>
   );
 };
 
-export default HouseholdListContainer;
+export default ProfileListItemContainer;

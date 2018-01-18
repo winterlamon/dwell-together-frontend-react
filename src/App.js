@@ -9,6 +9,8 @@ import NavBar from "./components/NavBar";
 import LandingPageContainer from "./containers/LandingPageContainer";
 import DashboardContainer from "./containers/DashboardContainer";
 import ProfileContainer from "./containers/ProfileContainer";
+import HouseholdMemberListContainer from "./containers/HouseholdMemberListContainer";
+import HouseholdListContainer from "./containers/HouseholdListContainer";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import CreateHousehold from "./components/CreateHousehold";
@@ -59,7 +61,7 @@ class App extends Component {
             list_items: this.state.auth.currentUser.household.list_items
           });
         });
-      this.props.history.push("/dashboard");
+      this.props.history.push("/profile");
       // api.users.getAllUsers().then(data => {
       //   this.setState({ users: data });
       // });
@@ -83,24 +85,9 @@ class App extends Component {
             path="/"
             render={props => {
               return loggedIn ? (
-                <Redirect to="/dashboard" />
+                <Redirect to="/profile" />
               ) : (
                 <LandingPageContainer {...props} />
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/login"
-            render={props => {
-              return loggedIn ? (
-                <Redirect to="/dashboard" />
-              ) : (
-                <Login
-                  {...props}
-                  handleLogin={this.handleLogin}
-                  currentUser={this.state.auth.currentUser}
-                />
               );
             }}
           />
@@ -109,11 +96,26 @@ class App extends Component {
             path="/signup"
             render={props => {
               return loggedIn ? (
-                <Redirect to="/dashboard" />
+                <Redirect to="/profile" />
               ) : (
                 <Signup
                   {...props}
                   handleSignup={api.auth.signup}
+                  currentUser={this.state.auth.currentUser}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/login"
+            render={props => {
+              return loggedIn ? (
+                <Redirect to="/profile" />
+              ) : (
+                <Login
+                  {...props}
+                  handleLogin={this.handleLogin}
                   currentUser={this.state.auth.currentUser}
                 />
               );
@@ -135,7 +137,7 @@ class App extends Component {
               );
             }}
           />
-          {/* <Route
+          <Route
             exact
             path="/profile"
             render={props => {
@@ -148,7 +150,39 @@ class App extends Component {
                 />
               );
             }}
-          /> */}
+          />
+          <Route
+            exact
+            path="/household/members"
+            render={props => {
+              return !loggedIn ? (
+                <Redirect to="/login" />
+              ) : (
+                <HouseholdMemberListContainer
+                  {...props}
+                  currentUser={this.state.auth.currentUser}
+                  users={this.state.users}
+                  refreshCurrentUser={this.refreshCurrentUser}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/household/lists"
+            render={props => {
+              return !loggedIn ? (
+                <Redirect to="/login" />
+              ) : (
+                <HouseholdListContainer
+                  {...props}
+                  currentUser={this.state.auth.currentUser}
+                  users={this.state.users}
+                  refreshCurrentUser={this.refreshCurrentUser}
+                />
+              );
+            }}
+          />
           {/* <Route
             exact
             path="/createhousehold"
@@ -161,8 +195,8 @@ class App extends Component {
                   currentUser={this.state.auth.currentUser}
                 />
               );
-            }} */}
-          />
+            }}
+            />*/}
         </div>
       </Router>
     );
