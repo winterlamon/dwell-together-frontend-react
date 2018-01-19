@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Col, Row } from "react-materialize";
+import { Button, Col, Modal, Row } from "react-materialize";
 import api from "../services/api";
 
 class CreateHousehold extends Component {
@@ -18,7 +18,8 @@ class CreateHousehold extends Component {
       if (res.error) {
         this.setState({ error: true }, console.log(res.error));
       } else {
-        this.props.history.push("/dashboard");
+        console.log("household created");
+        // this.props.history.push("/dashboard");
       }
     });
   };
@@ -52,14 +53,28 @@ class CreateHousehold extends Component {
                     />
                   </label>
                 </form>
-                <Button
-                  // onClick={this.handleSubmit}
-                  className="button"
-                  waves="light"
-                  node="a"
+
+                <Modal
+                  header={`${this.state.nickname} has been created.`}
+                  trigger={
+                    <Button
+                      // onClick={this.handleSubmit}
+                      className="button"
+                      waves="light"
+                      node="a"
+                    >
+                      Create Household
+                    </Button>
+                  }
                 >
-                  Create Household
-                </Button>
+                  <p>
+                    To add users to this household, create a user account and
+                    reference this household's key:
+                    <div classname="household-key">
+                      <strong>[household.id.hashed]</strong>
+                    </div>
+                  </p>
+                </Modal>
               </Row>
               <div>
                 <Row />

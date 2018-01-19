@@ -198,6 +198,12 @@ h6 {
   text-align: center;
 }
 
+.household-key {
+  color: #ff0000;
+  font-size: 32px;
+  font-weight: bold;
+}
+
 .form {
   background-color: #ffffff;
   border-color: #999999;
