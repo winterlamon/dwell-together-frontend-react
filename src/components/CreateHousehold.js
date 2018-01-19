@@ -29,7 +29,7 @@ class CreateHousehold extends Component {
     return (
       <div>
         <Row>
-          <Col className="signup-form">
+          <Col s={12} className="signup-form">
             <div className="container">
               {/* <p>
                 If you would like to join an existing household, please contact

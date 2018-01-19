@@ -8,6 +8,8 @@ class Signup extends Component {
     fields: {
       first_name: "",
       last_name: "",
+      username: "",
+      household_id: "",
       email: "",
       password: ""
     }
@@ -27,6 +29,8 @@ class Signup extends Component {
       .signup(
         this.state.fields.first_name,
         this.state.fields.last_name,
+        this.state.fields.username,
+        this.state.fields.household_id,
         this.state.fields.email,
         this.state.fields.password
       )
@@ -46,66 +50,86 @@ class Signup extends Component {
     return (
       <div>
         <Row>
-          <Col className="signup-form">
+          <Col s={12} className="signup-form">
             <div className="container">
               <h3>Create an Account</h3>
               <form>
-                <label>
-                  First Name
-                  <input
-                    s={6}
-                    type="text"
-                    name="first_name"
-                    id="first_name"
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <label>
-                  Last Name
-                  <input
-                    s={6}
-                    type="text"
-                    name="last_name"
-                    id="last_name"
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <label>
-                  Username
-                  <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <label>
-                  Email
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <label>
-                  Password
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <label>
-                  Household Key
-                  <input
-                    type="text"
-                    name="household_id"
-                    id="household_id"
-                    onChange={this.handleChange}
-                  />
-                </label>
+                <Row>
+                  <Col s={6}>
+                    <label>
+                      First Name
+                      <input
+                        s={6}
+                        type="text"
+                        name="first_name"
+                        id="first_name"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                  <Col s={6}>
+                    <label>
+                      Last Name
+                      <input
+                        s={6}
+                        type="text"
+                        name="last_name"
+                        id="last_name"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col s={6}>
+                    <label>
+                      Username
+                      <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                  <Col s={6}>
+                    <label>
+                      Household Key
+                      <input
+                        type="text"
+                        name="household_id"
+                        id="household_id"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col s={6}>
+                    <label>
+                      Email
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                  <Col s={6}>
+                    <label>
+                      Password
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                </Row>
               </form>
               <Button className="button" onClick={this.handleButtonClick}>
                 Create Account
