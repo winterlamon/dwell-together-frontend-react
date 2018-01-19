@@ -44,7 +44,7 @@ class Signup extends Component {
   render() {
     console.log("signup state", this.state);
     return (
-      <div className="signup">
+      <div>
         <Row>
           <Col className="signup-form">
             <div className="container">

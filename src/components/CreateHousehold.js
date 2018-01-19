@@ -27,14 +27,14 @@ class CreateHousehold extends Component {
     console.log("create household", this.state);
 
     return (
-      <div className="signup">
+      <div>
         <Row>
           <Col className="signup-form">
             <div className="container">
-              <p>
+              {/* <p>
                 If you would like to join an existing household, please contact
                 a member of the household to add you.
-              </p>
+              </p> */}
               <h3>Create a New Household</h3>
               <Row>
                 <form>

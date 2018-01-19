@@ -64,12 +64,12 @@ class NavBar extends Component {
               </Dropdown>
             </div>
           ) : (
-            <div className="navbar-contents inline">
+            <div className="navbar-contents">
               <Link to="/signup">
-                <NavItem className="nav-link">GET STARTED</NavItem>
+                <NavItem>GET STARTED</NavItem>
               </Link>
               <Link to="/login">
-                <NavItem className="nav-link">LOG IN</NavItem>
+                <NavItem>LOG IN</NavItem>
               </Link>
             </div>
           )}

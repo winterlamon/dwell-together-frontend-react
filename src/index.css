@@ -250,10 +250,7 @@ h6 {
 .navbar-contents {
   margin-left: 2rem;
   margin-right: 2rem;
-}
-
-.nav-link {
-  color: #000000;
+  display: flex;
 }
 
 .navbar-logo {
@@ -266,7 +263,7 @@ h6 {
   display: flex;
   height: 500%;
   padding-top: 2.5rem;
-  vertical-align: center;
+  vertical-align: middle;
 }
 
 /* ===== profile ===== */
