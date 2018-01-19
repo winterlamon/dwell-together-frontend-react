@@ -34,7 +34,9 @@ class Signup extends Component {
         if (res.error) {
           this.setState({ error: true }, console.log(res.error));
         } else {
-          this.props.history.push("/dashboard");
+          this.props.history.push(
+            `/profile/${this.state.auth.currentUser.username}`
+          );
         }
       });
   };
@@ -44,14 +46,14 @@ class Signup extends Component {
     return (
       <div className="signup">
         <Row>
-          <Col s={3} />
-          <Col s={6} className="signup-form">
+          <Col className="signup-form">
             <div className="container">
               <h3>Create an Account</h3>
               <form>
                 <label>
                   First Name
                   <input
+                    s={6}
                     type="text"
                     name="first_name"
                     id="first_name"
@@ -61,9 +63,19 @@ class Signup extends Component {
                 <label>
                   Last Name
                   <input
+                    s={6}
                     type="text"
                     name="last_name"
                     id="last_name"
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <label>
+                  Username
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
                     onChange={this.handleChange}
                   />
                 </label>
@@ -85,6 +97,15 @@ class Signup extends Component {
                     onChange={this.handleChange}
                   />
                 </label>
+                <label>
+                  Household Key
+                  <input
+                    type="text"
+                    name="household_id"
+                    id="household_id"
+                    onChange={this.handleChange}
+                  />
+                </label>
               </form>
               <Button className="button" onClick={this.handleButtonClick}>
                 Create Account
@@ -92,7 +113,6 @@ class Signup extends Component {
               <Row />
             </div>
           </Col>
-          <Col s={3} />
         </Row>
       </div>
     );

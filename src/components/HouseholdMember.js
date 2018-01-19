@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button, Col, Row } from "react-materialize";
 import api from "../services/api";
 
@@ -25,7 +26,9 @@ class HouseholdMember extends React.Component {
             </Card> */}
         <Row>
           <Col s={8}>
-            <h5>{member.first_name + " " + member.last_name}</h5>
+            <Link to={`/profile/${member.username}`}>
+              <h5>{member.first_name + " " + member.last_name}</h5>
+            </Link>
           </Col>
           <Col s={4}>
             <div className="member-button">

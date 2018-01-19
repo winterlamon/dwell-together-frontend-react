@@ -27,10 +27,9 @@ class CreateHousehold extends Component {
     console.log("create household", this.state);
 
     return (
-      <div className="login">
+      <div className="signup">
         <Row>
-          <Col s={3} />
-          <Col s={6} className="login-form">
+          <Col className="signup-form">
             <div className="container">
               <p>
                 If you would like to join an existing household, please contact
@@ -67,7 +66,6 @@ class CreateHousehold extends Component {
               </div>
             </div>
           </Col>
-          <Col s={3} />
         </Row>
       </div>
     );

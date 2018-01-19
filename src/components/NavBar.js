@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import logo from "../dwell-logo-full.svg";
 import { Button, Dropdown, Navbar, NavItem } from "react-materialize";
 
@@ -39,37 +39,38 @@ class NavBar extends Component {
                   </Button>
                 }
               >
-                <NavItem href="/dashboard" className="nav-link">
-                  DASHBOARD
-                </NavItem>
-                <NavItem href="/profile" className="nav-link">
-                  PROFILE
-                </NavItem>
-                <NavItem href="/household/lists" className="nav-link">
-                  LISTS
-                </NavItem>
-                <NavItem href="/household/members" className="nav-link">
-                  MEMBERS
-                </NavItem>
+                <Link to="/dashboard">
+                  <NavItem className="nav-link">DASHBOARD</NavItem>
+                </Link>
+                <Link to={`/profile/${this.props.currentUser.username}`}>
+                  <NavItem className="nav-link">PROFILE</NavItem>
+                </Link>
+                <Link to="/household/lists">
+                  <NavItem className="nav-link">LISTS</NavItem>
+                </Link>
+                <Link to="/household/members">
+                  <NavItem className="nav-link">MEMBERS</NavItem>
+                </Link>
                 <NavItem divider />
-                <NavItem
-                  onClick={() => {
-                    this.props.history.push("/login");
-                    this.props.handleLogout();
-                  }}
-                >
-                  LOG OUT
-                </NavItem>
+                <Link to="/login">
+                  <NavItem
+                    onClick={() => {
+                      this.props.handleLogout();
+                    }}
+                  >
+                    LOG OUT
+                  </NavItem>
+                </Link>
               </Dropdown>
             </div>
           ) : (
-            <div className="navbar-contents">
-              <NavItem href="/signup" className="nav-link">
-                GET STARTED
-              </NavItem>
-              <NavItem href="/login" className="nav-link">
-                LOG IN
-              </NavItem>
+            <div className="navbar-contents inline">
+              <Link to="/signup">
+                <NavItem className="nav-link">GET STARTED</NavItem>
+              </Link>
+              <Link to="/login">
+                <NavItem className="nav-link">LOG IN</NavItem>
+              </Link>
             </div>
           )}
         </Navbar>

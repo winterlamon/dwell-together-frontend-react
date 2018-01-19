@@ -6,18 +6,18 @@ class Profile extends Component {
   render() {
     return (
       <div className="profile">
-        <Row>
-          <Col>
+        <Row className="vertical-align">
+          <Col s={2}>
             <img className="profile-avatar" src={avatar} alt="user avatar" />
           </Col>
-          <Col>
+          <Col s={10}>
             <div>
               <h1>
                 {this.props.currentUser.first_name +
                   " " +
                   this.props.currentUser.last_name}
               </h1>
-              <h3>username</h3>
+              <h3>{this.props.currentUser.username}</h3>
               <p>
                 Eventually, there will be a user description/status here. But
                 for now, we have this filler text. Maybe a user will use the

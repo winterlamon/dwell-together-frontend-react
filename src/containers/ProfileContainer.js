@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Col, Input, Row } from "react-materialize";
-import HouseholdListContainer from "./HouseholdListContainer";
+import MemberListItems from "../components/MemberListItems";
 import UserProfileInfo from "../components/UserProfileInfo";
 
 const Profile = props => {
@@ -21,7 +21,7 @@ const Profile = props => {
         />
       </Row>
       <Row>
-        <HouseholdListContainer
+        <MemberListItems
           currentUser={props.currentUser}
           userListItems={userListItems}
         />

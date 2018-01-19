@@ -29,7 +29,12 @@ class App extends Component {
   handleLogin = user => {
     const currentUser = { currentUser: user };
     localStorage.setItem("token", user.token);
-    this.setState({ auth: currentUser });
+    this.setState(
+      { auth: currentUser },
+      this.props.history.push(
+        `/profile/${this.state.auth.currentUser.username}`
+      )
+    );
   };
 
   handleLogout = () => {
@@ -60,8 +65,11 @@ class App extends Component {
             lists: this.state.auth.currentUser.household.lists,
             list_items: this.state.auth.currentUser.household.list_items
           });
+          console.log("CDM in APP");
+          this.props.history.push(
+            `/profile/${this.state.auth.currentUser.username}`
+          );
         });
-      this.props.history.push("/profile");
       // api.users.getAllUsers().then(data => {
       //   this.setState({ users: data });
       // });
@@ -71,6 +79,7 @@ class App extends Component {
   render() {
     console.log("state in App", this.state.users);
     const loggedIn = !!this.state.auth.currentUser.id;
+    console.log("location in APP", this.props.location);
     // debugger;
 
     return (
@@ -85,7 +94,9 @@ class App extends Component {
             path="/"
             render={props => {
               return loggedIn ? (
-                <Redirect to="/profile" />
+                <Redirect
+                  to={`/profile/${this.state.auth.currentUser.username}`}
+                />
               ) : (
                 <LandingPageContainer {...props} />
               );
@@ -96,7 +107,9 @@ class App extends Component {
             path="/signup"
             render={props => {
               return loggedIn ? (
-                <Redirect to="/profile" />
+                <Redirect
+                  to={`/profile/${this.state.auth.currentUser.username}`}
+                />
               ) : (
                 <SignupContainer
                   {...props}
@@ -111,7 +124,9 @@ class App extends Component {
             path="/login"
             render={props => {
               return loggedIn ? (
-                <Redirect to="/profile" />
+                <Redirect
+                  to={`/profile/${this.state.auth.currentUser.username}`}
+                />
               ) : (
                 <Login
                   {...props}
@@ -139,7 +154,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/profile"
+            path="/profile/:username"
             render={props => {
               return !loggedIn ? (
                 <Redirect to="/login" />
