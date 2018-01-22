@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row } from "react-materialize";
+import { Button, Col, Row } from "react-materialize";
 
 class Profile extends Component {
   render() {
@@ -23,7 +23,7 @@ class Profile extends Component {
               </h1>
               <h3>{this.props.currentUser.username}</h3>
               <p>{this.props.currentUser.description}</p>
-              <p>
+              {/* <p>
                 Eventually, there will be a user description/status here. But
                 for now, we have this filler text. Maybe a user will use the
                 space to leave notes for their roommates like
@@ -31,7 +31,8 @@ class Profile extends Component {
                   "Hey, yall! Just a reminder that I will be out of town from
                   January 26 - February 3. I'll miss you!"
                 </em>
-              </p>
+              </p> */}
+              <Button className="button">Edit Description</Button>
             </div>
           </Col>
         </Row>

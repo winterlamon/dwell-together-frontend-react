@@ -9,7 +9,7 @@ import NavBar from "./components/NavBar";
 import LandingPageContainer from "./containers/LandingPageContainer";
 import DashboardContainer from "./containers/DashboardContainer";
 import ProfileContainer from "./containers/ProfileContainer";
-import HouseholdMemberListContainer from "./containers/HouseholdMemberListContainer";
+import MembersContainer from "./containers/MembersContainer";
 import HouseholdListContainer from "./containers/HouseholdListContainer";
 import SignupContainer from "./containers/SignupContainer";
 import Login from "./components/Login";
@@ -172,7 +172,7 @@ class App extends Component {
               return !loggedIn ? (
                 <Redirect to="/login" />
               ) : (
-                <HouseholdMemberListContainer
+                <MembersContainer
                   {...props}
                   currentUser={this.state.auth.currentUser}
                   users={this.state.users}

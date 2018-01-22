@@ -45,6 +45,7 @@ thead {
   border-radius: 5px;
   color: #ffffff;
   font-size: 16px;
+  height: auto;
   text-align: center;
   text-transform: uppercase;
 }

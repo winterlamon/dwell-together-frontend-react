@@ -13,17 +13,7 @@ class HouseholdMember extends React.Component {
     const member = this.props.member;
 
     return (
-      <div className="">
-        {/* <Card
-              className="card"
-              title={member.first_name + " " + member.last_name}
-              actions={[<Button
-                            key={"venue-button-" + member.id}
-                            onClick={this.handleClick}>
-                            Remove
-                          </Button>
-                      ]}>
-            </Card> */}
+      <div className="household-member">
         <Row>
           <Col s={8}>
             <Link to={`/profile/${member.username}`}>

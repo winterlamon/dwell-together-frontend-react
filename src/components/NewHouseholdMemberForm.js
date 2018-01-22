@@ -38,7 +38,7 @@ class NewHouseholdMemberForm extends React.Component {
       <div className="household-members-list form">
         <Row>
           <div>
-            <h5>Add New Member</h5>
+            <h5>Invite New Member</h5>
           </div>
         </Row>
         <Row>
@@ -46,7 +46,7 @@ class NewHouseholdMemberForm extends React.Component {
             <input
               type="text"
               className="center"
-              placeholder="Member Email"
+              placeholder="Email"
               value={this.state.email}
               onChange={this.handleChange}
             />
