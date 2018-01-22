@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Parallax, Row } from "react-materialize";
+import { Button } from "react-materialize";
 
 const JumbotronComponent = () => {
   return (

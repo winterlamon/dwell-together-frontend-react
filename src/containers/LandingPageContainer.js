@@ -1,5 +1,5 @@
 import React from "react";
-import JumbotronComponent from "../components/landing-page/Jumbotron";
+// import JumbotronComponent from "../components/landing-page/Jumbotron";
 // import About from "../components/landing-page/About";
 // import Features from "../components/landing-page/Features";
 // import Actions from "../components/landing-page/Actions";

@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import LandingPageContainer from "./containers/LandingPageContainer";
-import DashboardContainer from "./containers/DashboardContainer";
+// import DashboardContainer from "./containers/DashboardContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 import MembersContainer from "./containers/MembersContainer";
 import HouseholdListContainer from "./containers/HouseholdListContainer";

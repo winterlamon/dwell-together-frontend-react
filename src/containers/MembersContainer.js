@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Col, Row } from "react-materialize";
+import { Col, Row } from "react-materialize";
 import HouseholdMemberListContainer from "./HouseholdMemberListContainer";
 import HouseholdMemberSidebarContainer from "./HouseholdMemberSidebarContainer";
-import HouseholdListContainer from "./HouseholdListContainer";
+// import HouseholdListContainer from "./HouseholdListContainer";
 import NewHouseholdMemberForm from "../components/NewHouseholdMemberForm";
 import HouseholdKey from "../components/HouseholdKey";
 

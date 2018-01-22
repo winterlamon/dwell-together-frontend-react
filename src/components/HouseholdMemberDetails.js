@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Col, Row } from "react-materialize";
+import { Col, Row } from "react-materialize";
 import api from "../services/api";
 
 class HouseholdMemberDetails extends React.Component {

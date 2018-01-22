@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Col, Row } from "react-materialize";
-import api from "../services/api";
+import { Row } from "react-materialize";
 
 const HouseholdKey = props => {
   const Hashids = require("hashids");

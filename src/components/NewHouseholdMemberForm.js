@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Row } from "react-materialize";
+import { Button, Row } from "react-materialize";
 import api from "../services/api";
 
 class NewHouseholdMemberForm extends React.Component {
