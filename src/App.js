@@ -161,6 +161,7 @@ class App extends Component {
                 <ProfileContainer
                   {...props}
                   currentUser={this.state.auth.currentUser}
+                  users={this.state.users}
                 />
               );
             }}
