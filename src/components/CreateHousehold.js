@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Col, Modal, Row } from "react-materialize";
+import { Button, Col, Row } from "react-materialize";
 import api from "../services/api";
 
 class CreateHousehold extends Component {

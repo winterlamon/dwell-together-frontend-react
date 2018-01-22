@@ -13,7 +13,6 @@ import HouseholdMemberListContainer from "./containers/HouseholdMemberListContai
 import HouseholdListContainer from "./containers/HouseholdListContainer";
 import SignupContainer from "./containers/SignupContainer";
 import Login from "./components/Login";
-import CreateHousehold from "./components/CreateHousehold";
 import api from "./services/api";
 
 class App extends Component {

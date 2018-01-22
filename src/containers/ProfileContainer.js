@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Button, Col, Input, Row } from "react-materialize";
+import React from "react";
+import { Row } from "react-materialize";
 import ProfileListItemContainer from "../containers/ProfileListItemContainer";
 import UserProfileInfo from "../components/UserProfileInfo";
 

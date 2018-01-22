@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Carousel, Col, Parallax, Row } from "react-materialize";
+import { Button, Carousel, Col, Row } from "react-materialize";
 
 const FullLandingPage = () => {
   return (

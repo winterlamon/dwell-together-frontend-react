@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Button, Col, Row } from "react-materialize";
+import React from "react";
+import { Col, Row } from "react-materialize";
 import api from "../services/api";
 import CreateHousehold from "../components/CreateHousehold";
 import Signup from "../components/Signup";

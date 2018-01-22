@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Button, Col, Input, Row } from "react-materialize";
-import avatar from "../default-avatar.png";
+import { Col, Row } from "react-materialize";
 
 class Profile extends Component {
   render() {
