@@ -135,7 +135,7 @@ class App extends Component {
               );
             }}
           />
-          <Route
+          {/* <Route
             exact
             path="/dashboard"
             render={props => {
@@ -150,7 +150,7 @@ class App extends Component {
                 />
               );
             }}
-          />
+          /> */}
           <Route
             exact
             path="/profile/:username"

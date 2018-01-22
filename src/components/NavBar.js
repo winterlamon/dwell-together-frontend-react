@@ -39,17 +39,17 @@ class NavBar extends Component {
                   </Button>
                 }
               >
-                <Link to="/dashboard">
+                {/* <Link to="/dashboard">
                   <NavItem className="nav-link">DASHBOARD</NavItem>
-                </Link>
+                </Link> */}
                 <Link to={`/profile/${this.props.currentUser.username}`}>
                   <NavItem className="nav-link">PROFILE</NavItem>
                 </Link>
-                <Link to="/household/lists">
-                  <NavItem className="nav-link">LISTS</NavItem>
-                </Link>
                 <Link to="/household/members">
                   <NavItem className="nav-link">MEMBERS</NavItem>
+                </Link>
+                <Link to="/household/lists">
+                  <NavItem className="nav-link">LISTS</NavItem>
                 </Link>
                 <NavItem divider />
                 <Link to="/login">
