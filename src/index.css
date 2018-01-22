@@ -29,6 +29,17 @@ h6 {
   text-shadow: 2px 2px 4px #ffffff;
 }
 
+table,
+th,
+td {
+  text-align: center;
+  border: 1px solid black;
+}
+
+thead {
+  background-color: rgba(127, 205, 240, 1);
+}
+
 .button {
   background: #000000;
   border-radius: 5px;
@@ -280,4 +291,9 @@ h6 {
 
 .profile-avatar {
   height: 12rem;
+}
+
+.profile-items {
+  padding-left: 4rem;
+  padding-right: 4rem;
 }

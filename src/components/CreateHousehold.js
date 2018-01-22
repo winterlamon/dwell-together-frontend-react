@@ -19,13 +19,16 @@ class CreateHousehold extends Component {
         this.setState({ error: true }, console.log(res.error));
       } else {
         console.log("household created");
+        alert(
+          "Household has been created. Use the key WHATEVER to join a household."
+        );
         // this.props.history.push("/dashboard");
       }
     });
   };
 
   render() {
-    console.log("create household", this.state);
+    console.log("state in create household", this.state);
 
     return (
       <div>
@@ -54,27 +57,14 @@ class CreateHousehold extends Component {
                   </label>
                 </form>
 
-                <Modal
-                  header={`${this.state.nickname} has been created.`}
-                  trigger={
-                    <Button
-                      // onClick={this.handleSubmit}
-                      className="button"
-                      waves="light"
-                      node="a"
-                    >
-                      Create Household
-                    </Button>
-                  }
+                <Button
+                  onClick={this.handleClick}
+                  className="button"
+                  waves="light"
+                  node="a"
                 >
-                  <p>
-                    To add users to this household, create a user account and
-                    reference this household's key:
-                    <div classname="household-key">
-                      <strong>[household.id.hashed]</strong>
-                    </div>
-                  </p>
-                </Modal>
+                  Create Household
+                </Button>
               </Row>
               <div>
                 <Row />

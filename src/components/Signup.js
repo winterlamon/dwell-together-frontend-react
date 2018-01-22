@@ -38,9 +38,8 @@ class Signup extends Component {
         if (res.error) {
           this.setState({ error: true }, console.log(res.error));
         } else {
-          this.props.history.push(
-            `/profile/${this.state.auth.currentUser.username}`
-          );
+          console.log("new user created");
+          this.props.history.push("/login");
         }
       });
   };

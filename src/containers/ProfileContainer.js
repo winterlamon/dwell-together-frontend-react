@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { Button, Col, Input, Row } from "react-materialize";
-import MemberListItems from "../components/MemberListItems";
+import ProfileListItemContainer from "../containers/ProfileListItemContainer";
 import UserProfileInfo from "../components/UserProfileInfo";
 
 const Profile = props => {
   const user = props.currentUser;
   const household = user.household;
-  const userListItems = household.list_items.filter(item => {
-    item.user_id === user.id;
-  });
+  const userListItems = user.list_items;
 
   console.log("user list items", userListItems);
 
@@ -21,7 +19,7 @@ const Profile = props => {
         />
       </Row>
       <Row>
-        <MemberListItems
+        <ProfileListItemContainer
           currentUser={props.currentUser}
           userListItems={userListItems}
         />

@@ -1,25 +1,38 @@
 import React from "react";
 import { Col, Row } from "react-materialize";
 import HouseholdList from "../components/HouseholdList";
+import ListItem from "../components/ListItem";
 
 const ProfileListItemContainer = props => {
   const allUserListItems = props.userListItems.map(item => (
     <ListItem
-      key={`list-item-` + list.id.toString()}
+      key={`list-item-` + item.id.toString()}
       item={item}
       currentUser={props.currentUser}
-      refreshCurrentUser={props.refreshCurrentUser}
     />
   ));
 
   return (
-    <div className="household-lists">
-      <Col s={12}>
+    <div className="profile-items">
+      <Row>
         <div>
           <h3>Your Items</h3>
-          {allUserListItems}
         </div>
-      </Col>
+        <div className="search">Search Bar / Filter Goes Here</div>
+        <div>
+          <table className="list-items-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>{allUserListItems}</tbody>
+          </table>
+        </div>
+      </Row>
     </div>
   );
 };

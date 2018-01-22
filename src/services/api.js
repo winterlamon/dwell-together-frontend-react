@@ -16,13 +16,22 @@ const login = (email, password) => {
   }).then(res => res.json());
 };
 
-const signup = (first_name, last_name, email, password) => {
+const signup = (
+  first_name,
+  last_name,
+  username,
+  household_id,
+  email,
+  password
+) => {
   return fetch(`${baseURL}/users`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({
       first_name,
       last_name,
+      username,
+      household_id,
       email,
       password
     })
@@ -123,11 +132,11 @@ const createListItem = (name, description, due_date, user, list) => {
   });
 };
 
-const updateListItem = list_item => {
-  return fetch(`${baseURL}/list_items`, {
+const completeListItem = list_item => {
+  return fetch(`${baseURL}/list_items/${list_item.id}`, {
     method: "PATCH",
     headers: headers,
-    body: JSON.stringify({ list_item })
+    body: JSON.stringify({ ...list_item, completed: true })
     // }).then(res => res.json())
   });
 };
@@ -156,6 +165,6 @@ export default {
   },
   listItems: {
     createListItem,
-    updateListItem
+    completeListItem
   }
 };
