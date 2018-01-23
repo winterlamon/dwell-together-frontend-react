@@ -51,7 +51,8 @@ export function householdReducer(
       nickname: null,
       lists: [],
       list_items: [],
-      members: []
+      members: [],
+      household_key: ""
     }
   },
   action

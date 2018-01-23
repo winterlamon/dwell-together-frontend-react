@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
-import api from "../services/api";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -16,13 +15,15 @@ class CreateHousehold extends Component {
 
   handleClick = event => {
     event.preventDefault();
-    api.households.createHousehold(this.state.nickname).then(res => {
+    this.props.createHousehold(this.state.nickname).then(res => {
       if (res.error) {
         this.setState({ error: true }, console.log(res.error));
       } else {
         console.log("household created");
         alert(
-          "Household has been created. Use the key WHATEVER to join a household."
+          `${this.props.household.nickname} has been created. Use the key ${
+            this.props.household.household_key
+          } to join a household.`
         );
         // this.props.history.push("/dashboard");
       }
@@ -83,7 +84,6 @@ export default connect(state => {
   return {
     ...state.authReducer,
     ...state.usersReducer,
-    ...state.householdReducer,
-    ...state.listCategoriesReducer
+    ...state.householdReducer
   };
 }, actions)(CreateHousehold);

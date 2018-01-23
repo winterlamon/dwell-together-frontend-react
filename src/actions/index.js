@@ -8,11 +8,11 @@ const headers = {
   Authorization: token
 };
 
-// export const changeHi = () => {
-//   return {
-//     type: "CHANGE_HI"
-//   };
-// };
+// household id hashkey (6 characters) //
+
+var Hashids = require("hashids");
+var hashids = new Hashids("Household", 6);
+// console.log(hashids.encode(1, 2, 3)); // Z4UrtW
 
 // ==== USERS ==== //
 
@@ -46,7 +46,6 @@ export function logoutUser() {
   return dispatch => {
     localStorage.removeItem("token");
     dispatch({ type: "LOG_OUT_USER" });
-    // return currentUser;
   };
 }
 
@@ -54,7 +53,7 @@ export function signup(
   first_name,
   last_name,
   username,
-  household_id,
+  household_key,
   email,
   password
 ) {
@@ -66,7 +65,7 @@ export function signup(
         first_name,
         last_name,
         username,
-        household_id,
+        household_id: hashids.decode(household_key),
         email,
         password
       })
@@ -137,7 +136,15 @@ export function createHousehold(nickname) {
       body: JSON.stringify({ nickname })
     })
       .then(res => res.json())
-      .then(household => dispatch({ type: "CREATE_HOUSEHOLD", household }));
+      .then(household =>
+        dispatch({
+          type: "CREATE_HOUSEHOLD",
+          household: {
+            ...household,
+            household_key: hashids.encode(household.id)
+          }
+        })
+      );
   };
 }
 
