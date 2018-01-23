@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "react-materialize";
+import { Col, Collapsible, Row } from "react-materialize";
 import HouseholdList from "../components/HouseholdList";
 import NewListForm from "../components/NewListForm";
 import NewListItemForm from "../components/NewListItemForm";
@@ -21,7 +21,7 @@ const HouseholdListContainer = props => {
         <Col s={8}>
           <div>
             <h3>Lists</h3>
-            {allHouseholdLists}
+            <Collapsible popout>{allHouseholdLists}</Collapsible>
           </div>
         </Col>
         <Col s={4} className="household center">
