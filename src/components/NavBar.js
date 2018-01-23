@@ -57,7 +57,7 @@ class NavBar extends Component {
                 <Link to="/login">
                   <NavItem
                     onClick={() => {
-                      this.props.handleLogout();
+                      this.props.logoutUser();
                     }}
                   >
                     LOG OUT

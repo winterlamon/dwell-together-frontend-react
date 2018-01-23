@@ -37,6 +37,8 @@ export function authReducer(state = { currentUser: {} }, action) {
   switch (action.type) {
     case "SET_CURRENT_USER":
       return { ...state, currentUser: action.currentUser };
+    case "LOG_OUT_USER":
+      return { ...state, currentUser: {} };
     default:
       return state;
   }

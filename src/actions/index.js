@@ -42,6 +42,14 @@ export function loginUser({ email, password }) {
   };
 }
 
+export function logoutUser() {
+  return dispatch => {
+    localStorage.removeItem("token");
+    dispatch({ type: "LOG_OUT_USER" });
+    // return currentUser;
+  };
+}
+
 export function signup(
   first_name,
   last_name,
