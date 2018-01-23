@@ -65,9 +65,9 @@ export function signup(
       })
     })
       .then(res => res.json())
-      .then(currentUser => {
-        localStorage.setItem("token", currentUser.token);
-        dispatch({ type: "CREATE_USER", currentUser });
+      .then(user => {
+        localStorage.setItem("token", user.token);
+        dispatch({ type: "CREATE_USER", user });
         // this.props.history.push(
         //   `/profile/${this.state.auth.currentUser.username}`
       });
@@ -94,9 +94,7 @@ export function addUserToHousehold(user, household) {
       body: JSON.stringify({ household_id: household.id })
     })
       .then(res => res.json())
-      .then(currentUser =>
-        dispatch({ type: "SET_USER_HOUSEHOLD", currentUser })
-      );
+      .then(user => dispatch({ type: "SET_USER_HOUSEHOLD", user }));
   };
 }
 
@@ -108,9 +106,7 @@ export function removeUserFromHousehold(user) {
       body: JSON.stringify({ household_id: 1 })
     })
       .then(res => res.json())
-      .then(currentUser =>
-        dispatch({ type: "SET_USER_HOUSEHOLD", currentUser })
-      );
+      .then(user => dispatch({ type: "SET_USER_HOUSEHOLD", user }));
   };
 }
 

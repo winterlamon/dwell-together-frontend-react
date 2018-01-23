@@ -55,6 +55,10 @@ export function householdReducer(
   action
 ) {
   switch (action.type) {
+    case "CREATE_HOUSEHOLD":
+      return { ...state, household: action.household };
+    case "GET_HOUSEHOLD":
+      return { ...state, household: action.household };
     default:
       return state;
   }
@@ -77,6 +81,16 @@ export function usersReducer(
   action
 ) {
   switch (action.type) {
+    case "CREATE_USER":
+      return {
+        ...state,
+        selectedUser: action.user,
+        users: [...state.users.push(action.user)]
+      };
+    case "GET_ALL_USERS":
+      return { ...state, users: action.users };
+    case "SET_USER_HOUSEHOLD":
+      return { ...state, selectedUser: action.user };
     default:
       return state;
   }

@@ -140,7 +140,7 @@ class App extends Component {
                 <SignupContainer
                   {...props}
                   handleSignup={api.auth.signup}
-                  currentUser={this.state.auth.currentUser}
+                  currentUser={this.props.auth.currentUser}
                 />
               );
             }}
@@ -157,7 +157,7 @@ class App extends Component {
                 <Login
                   {...props}
                   loginUser={this.props.loginUser}
-                  currentUser={this.state.auth.currentUser}
+                  currentUser={this.props.auth.currentUser}
                 />
               );
             }}

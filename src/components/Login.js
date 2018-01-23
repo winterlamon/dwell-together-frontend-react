@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Button, Col, Row } from "react-materialize";
 import api from "../services/api";
 
@@ -104,4 +105,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(
+  state => ({
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  }),
+  actions
+)(Login);
