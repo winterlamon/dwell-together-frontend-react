@@ -20,9 +20,12 @@ class App extends Component {
     auth: {
       currentUser: {}
     },
+    household: {},
     users: [],
     lists: [],
-    list_items: []
+    list_items: [],
+    selectedUser: {},
+    filter: false
   };
 
   handleLogin = user => {

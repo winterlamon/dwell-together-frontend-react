@@ -3,9 +3,10 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-// import { createStore } from "redux";
-// import { Provider } from "react-redux";
-// import registerServiceWorker from './registerServiceWorker';
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import registerServiceWorker from "./registerServiceWorker";
 import injectTapEventPlugin from "react-tap-event-plugin";
 
 injectTapEventPlugin();
@@ -22,15 +23,17 @@ injectTapEventPlugin();
 //       return state;
 //   }
 // };
+const rootReducer = combineReducers({});
+const store = createStore(rootReducer, applyMiddleware(thunk));
+const Root = () => {
+  return (
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  );
+};
 
-// const store = createStore(reducer);
-
-ReactDOM.render(
-  <Router>
-    {/* <Provider store={store}> */}
-    <App />
-    {/* </Provider> */}
-  </Router>,
-  document.getElementById("root")
-);
-// registerServiceWorker();
+ReactDOM.render(<Root />, document.getElementById("root"));
+registerServiceWorker();
