@@ -21,13 +21,14 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api.auth
-      .login(this.state.fields.email, this.state.fields.password)
+    this.props
+      .loginUser(this.state.fields.email, this.state.fields.password)
       .then(res => {
         if (res.error) {
           this.setState({ error: true }, alert(res.error));
         } else {
-          this.props.handleLogin(res);
+          // this.props.handleLogin(res);
+          console.log;
         }
       });
   };

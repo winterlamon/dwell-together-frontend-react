@@ -5,6 +5,7 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
+import { connect } from "react-redux";
 import NavBar from "./components/NavBar";
 import LandingPageContainer from "./containers/LandingPageContainer";
 // import DashboardContainer from "./containers/DashboardContainer";
@@ -14,18 +15,42 @@ import HouseholdListContainer from "./containers/HouseholdListContainer";
 import SignupContainer from "./containers/SignupContainer";
 import Login from "./components/Login";
 import api from "./services/api";
+import * as actions from "./actions";
 
 class App extends Component {
   state = {
     auth: {
-      currentUser: {}
+      currentUser: {
+        id: null,
+        first_name: null,
+        last_name: null,
+        username: null,
+        email: null,
+        description: null,
+        avatar_url: null,
+        list_items: [],
+        token: null
+      }
     },
-    household: {},
+    household: {
+      id: null,
+      nickname: null,
+      lists: [],
+      list_items: [],
+      members: []
+    },
     users: [],
-    lists: [],
-    list_items: [],
-    selectedUser: {},
-    filter: false
+    list_categories: [],
+    selectedUser: {
+      id: null,
+      first_name: null,
+      last_name: null,
+      username: null,
+      email: null,
+      description: null,
+      avatar_url: null,
+      list_items: []
+    }
   };
 
   handleLogin = user => {
@@ -56,30 +81,29 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (api.auth.token) {
-      api.auth
-        .getCurrentUser()
-        .then(data => {
-          this.setState({ auth: { currentUser: data } });
-        })
-        .then(data => {
-          this.setState({
-            lists: this.state.auth.currentUser.household.lists,
-            list_items: this.state.auth.currentUser.household.list_items
-          });
-          console.log("CDM in APP");
-          this.props.history.push(
-            `/profile/${this.state.auth.currentUser.username}`
-          );
-        });
-      // api.users.getAllUsers().then(data => {
-      //   this.setState({ users: data });
-      // });
+    if (localStorage.getItem("token")) {
+      this.props.getCurrentUser();
+      // .then(data => {
+      //   this.setState({ auth: { currentUser: data } });
     }
+    //     .then(data => {
+    //       this.setState({
+    //         lists: this.state.auth.currentUser.household.lists,
+    //         list_items: this.state.auth.currentUser.household.list_items
+    //       });
+    //       console.log("CDM in APP");
+    //       this.props.history.push(
+    //         `/profile/${this.state.auth.currentUser.username}`
+    //       );
+    //     });
+    //   // api.users.getAllUsers().then(data => {
+    //   //   this.setState({ users: data });
+    //   // });
+    // }
   }
 
   render() {
-    console.log("state in App", this.state.users);
+    console.log("props in App", this.props);
     const loggedIn = !!this.state.auth.currentUser.id;
     console.log("location in APP", this.props.location);
     // debugger;
@@ -132,7 +156,7 @@ class App extends Component {
               ) : (
                 <Login
                   {...props}
-                  handleLogin={this.handleLogin}
+                  loginUser={this.props.loginUser}
                   currentUser={this.state.auth.currentUser}
                 />
               );
@@ -221,4 +245,18 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+// const mapStateToProps = state => {
+//   return state;
+// };
+
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer,
+      ...state.usersReducer,
+      ...state.householdReducer,
+      ...state.listCategoriesReducer
+    }),
+    actions
+  )(App)
+);
