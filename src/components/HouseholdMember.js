@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Col, Row } from "react-materialize";
 import api from "../services/api";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class HouseholdMember extends React.Component {
   handleClick = event => {
@@ -37,4 +39,11 @@ class HouseholdMember extends React.Component {
   }
 }
 
-export default HouseholdMember;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(HouseholdMember);

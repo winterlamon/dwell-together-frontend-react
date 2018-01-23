@@ -6,6 +6,7 @@ import {
   withRouter
 } from "react-router-dom";
 import { connect } from "react-redux";
+import * as actions from "./actions";
 import NavBar from "./components/NavBar";
 import LandingPageContainer from "./containers/LandingPageContainer";
 // import DashboardContainer from "./containers/DashboardContainer";
@@ -15,74 +16,74 @@ import HouseholdListContainer from "./containers/HouseholdListContainer";
 import SignupContainer from "./containers/SignupContainer";
 import Login from "./components/Login";
 import api from "./services/api";
-import * as actions from "./actions";
 
 class App extends Component {
-  state = {
-    auth: {
-      currentUser: {
-        id: null,
-        first_name: null,
-        last_name: null,
-        username: null,
-        email: null,
-        description: null,
-        avatar_url: null,
-        list_items: [],
-        token: null
-      }
-    },
-    household: {
-      id: null,
-      nickname: null,
-      lists: [],
-      list_items: [],
-      members: []
-    },
-    users: [],
-    list_categories: [],
-    selectedUser: {
-      id: null,
-      first_name: null,
-      last_name: null,
-      username: null,
-      email: null,
-      description: null,
-      avatar_url: null,
-      list_items: []
-    }
-  };
+  // state = {
+  //   auth: {
+  //     currentUser: {
+  //       id: null,
+  //       first_name: null,
+  //       last_name: null,
+  //       username: null,
+  //       email: null,
+  //       description: null,
+  //       avatar_url: null,
+  //       list_items: [],
+  //       token: null
+  //     }
+  //   },
+  //   household: {
+  //     id: null,
+  //     nickname: null,
+  //     lists: [],
+  //     list_items: [],
+  //     members: []
+  //   },
+  //   users: [],
+  //   list_categories: [],
+  //   selectedUser: {
+  //     id: null,
+  //     first_name: null,
+  //     last_name: null,
+  //     username: null,
+  //     email: null,
+  //     description: null,
+  //     avatar_url: null,
+  //     list_items: []
+  //   }
+  // };
 
-  handleLogin = user => {
-    const currentUser = { currentUser: user };
-    localStorage.setItem("token", user.token);
-    this.setState(
-      { auth: currentUser },
-      this.props.history.push(
-        `/profile/${this.state.auth.currentUser.username}`
-      )
-    );
-  };
+  // handleLogin = user => {
+  //   const currentUser = { currentUser: user };
+  //   localStorage.setItem("token", user.token);
+  //   this.setState(
+  //     { auth: currentUser },
+  //     this.props.history.push(
+  //       `/profile/${this.state.auth.currentUser.username}`
+  //     )
+  //   );
+  // };
 
-  handleLogout = () => {
-    localStorage.removeItem("token");
-    this.setState({ auth: { currentUser: {} } });
-  };
+  // handleLogout = () => {
+  //   localStorage.removeItem("token");
+  //   this.setState({ auth: { currentUser: {} } });
+  // };
 
-  refreshCurrentUser = () => {
-    // debugger;
-    this.setState(this.state);
-  };
+  // refreshCurrentUser = () => {
+  //   // debugger;
+  //   this.setState(this.state);
+  // };
 
-  componentWillMount() {
-    api.users.getAllUsers().then(data => {
-      this.setState({ users: data });
-    });
-  }
+  // componentWillMount() {
+  //   api.users.getAllUsers().then(data => {
+  //     this.setState({ users: data });
+  //   });
+  // }
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
       this.props.getCurrentUser();
+      this.props.getAllUsers();
       // .then(data => {
       //   this.setState({ auth: { currentUser: data } });
     }
@@ -104,7 +105,7 @@ class App extends Component {
 
   render() {
     console.log("props in App", this.props);
-    const loggedIn = !!this.state.auth.currentUser.id;
+    const loggedIn = !!this.props.currentUser.id;
     console.log("location in APP", this.props.location);
     // debugger;
 
@@ -112,7 +113,7 @@ class App extends Component {
       <Router>
         <div>
           <NavBar
-            currentUser={this.state.auth.currentUser}
+            currentUser={this.props.currentUser}
             handleLogout={this.handleLogout}
           />
           <Route
@@ -120,9 +121,7 @@ class App extends Component {
             path="/"
             render={props => {
               return loggedIn ? (
-                <Redirect
-                  to={`/profile/${this.state.auth.currentUser.username}`}
-                />
+                <Redirect to={`/profile/${this.props.currentUser.username}`} />
               ) : (
                 <LandingPageContainer {...props} />
               );
@@ -133,14 +132,12 @@ class App extends Component {
             path="/signup"
             render={props => {
               return loggedIn ? (
-                <Redirect
-                  to={`/profile/${this.state.auth.currentUser.username}`}
-                />
+                <Redirect to={`/profile/${this.props.currentUser.username}`} />
               ) : (
                 <SignupContainer
                   {...props}
-                  handleSignup={api.auth.signup}
-                  currentUser={this.props.auth.currentUser}
+                  handleSignup={api.signup}
+                  currentUser={this.props.currentUser}
                 />
               );
             }}
@@ -150,14 +147,12 @@ class App extends Component {
             path="/login"
             render={props => {
               return loggedIn ? (
-                <Redirect
-                  to={`/profile/${this.state.auth.currentUser.username}`}
-                />
+                <Redirect to={`/profile/${this.props.currentUser.username}`} />
               ) : (
                 <Login
                   {...props}
+                  getCurrentUser={this.props.getCurrentUser}
                   loginUser={this.props.loginUser}
-                  currentUser={this.props.auth.currentUser}
                 />
               );
             }}
@@ -171,8 +166,8 @@ class App extends Component {
               ) : (
                 <DashboardContainer
                   {...props}
-                  currentUser={this.state.auth.currentUser}
-                  users={this.state.users}
+                  currentUser={this.props.currentUser}
+                  users={this.props.users}
                   refreshCurrentUser={this.refreshCurrentUser}
                 />
               );
@@ -187,8 +182,8 @@ class App extends Component {
               ) : (
                 <ProfileContainer
                   {...props}
-                  currentUser={this.state.auth.currentUser}
-                  users={this.state.users}
+                  currentUser={this.props.currentUser}
+                  user={this.props.selectedUser}
                 />
               );
             }}
@@ -202,8 +197,8 @@ class App extends Component {
               ) : (
                 <MembersContainer
                   {...props}
-                  currentUser={this.state.auth.currentUser}
-                  users={this.state.users}
+                  currentUser={this.props.currentUser}
+                  users={this.props.users}
                   refreshCurrentUser={this.refreshCurrentUser}
                 />
               );
@@ -218,8 +213,8 @@ class App extends Component {
               ) : (
                 <HouseholdListContainer
                   {...props}
-                  currentUser={this.state.auth.currentUser}
-                  users={this.state.users}
+                  currentUser={this.props.currentUser}
+                  users={this.props.users}
                   refreshCurrentUser={this.refreshCurrentUser}
                 />
               );
@@ -234,7 +229,7 @@ class App extends Component {
               ) : (
                 <CreateHousehold
                   {...props}
-                  currentUser={this.state.auth.currentUser}
+                  currentUser={this.props.currentUser}
                 />
               );
             }}
@@ -250,13 +245,12 @@ class App extends Component {
 // };
 
 export default withRouter(
-  connect(
-    state => ({
+  connect(state => {
+    return {
       ...state.authReducer,
       ...state.usersReducer,
       ...state.householdReducer,
       ...state.listCategoriesReducer
-    }),
-    actions
-  )(App)
+    };
+  }, actions)(App)
 );

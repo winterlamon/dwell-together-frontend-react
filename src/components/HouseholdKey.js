@@ -1,5 +1,7 @@
 import React from "react";
 import { Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 const HouseholdKey = props => {
   const Hashids = require("hashids");
@@ -23,4 +25,8 @@ const HouseholdKey = props => {
   );
 };
 
-export default HouseholdKey;
+export default connect(state => {
+  return {
+    ...state.householdReducer
+  };
+}, actions)(HouseholdKey);

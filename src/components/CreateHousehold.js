@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
 import api from "../services/api";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class CreateHousehold extends Component {
   state = {
@@ -77,4 +79,11 @@ class CreateHousehold extends Component {
   }
 }
 
-export default CreateHousehold;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(CreateHousehold);

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class Profile extends Component {
   render() {
@@ -41,4 +43,11 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(Profile);

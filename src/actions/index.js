@@ -18,7 +18,7 @@ const headers = {
 
 export function getCurrentUser() {
   return dispatch => {
-    fetch(`${baseURL}/current_user`, {
+    return fetch(`${baseURL}/current_user`, {
       headers: headers
     })
       .then(res => res.json())
@@ -28,7 +28,7 @@ export function getCurrentUser() {
 
 export function loginUser({ email, password }) {
   return dispatch => {
-    fetch(`${baseURL}/auth`, {
+    return fetch(`${baseURL}/auth`, {
       method: "POST",
       headers: headers,
       body: JSON.stringify({ email, password })
@@ -37,8 +37,7 @@ export function loginUser({ email, password }) {
       .then(currentUser => {
         localStorage.setItem("token", currentUser.token);
         dispatch({ type: "SET_CURRENT_USER", currentUser });
-        // this.props.history.push(
-        //   `/profile/${this.state.auth.currentUser.username}`
+        return currentUser;
       });
   };
 }
@@ -83,6 +82,16 @@ export function getAllUsers() {
       .then(users => {
         dispatch({ type: "GET_ALL_USERS", users });
       });
+  };
+}
+
+export function getUserData(user) {
+  return dispatch => {
+    return fetch(`${baseURL}/users/${user.id}`)
+      .then(res => res.json())
+      .then(selectedUser =>
+        dispatch({ type: "SET_SELECTED_USER", selectedUser })
+      );
   };
 }
 

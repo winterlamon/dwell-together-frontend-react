@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Icon } from "react-materialize";
 import api from "../services/api";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class ListItem extends React.Component {
   handleClick = () => {
@@ -46,4 +48,11 @@ class ListItem extends React.Component {
   }
 }
 
-export default ListItem;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(ListItem);

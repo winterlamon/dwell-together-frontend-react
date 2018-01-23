@@ -1,5 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import api from "../services/api";
 import CreateHousehold from "../components/CreateHousehold";
 import Signup from "../components/Signup";
@@ -25,4 +27,11 @@ const SignupContainer = props => {
   );
 };
 
-export default SignupContainer;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(SignupContainer);

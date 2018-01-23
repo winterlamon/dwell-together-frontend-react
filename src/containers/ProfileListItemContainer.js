@@ -1,5 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import HouseholdList from "../components/HouseholdList";
 import ListItem from "../components/ListItem";
 
@@ -37,4 +39,11 @@ const ProfileListItemContainer = props => {
   );
 };
 
-export default ProfileListItemContainer;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(ProfileListItemContainer);

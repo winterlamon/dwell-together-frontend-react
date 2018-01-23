@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Col, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import NewHouseholdMemberForm from "../components/NewHouseholdMemberForm";
 import HouseholdMemberListContainer from "./HouseholdMemberListContainer";
 import HouseholdListContainer from "./HouseholdListContainer";
@@ -81,4 +83,11 @@ const DashboardContainer = props => {
   );
 };
 
-export default DashboardContainer;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(DashboardContainer);

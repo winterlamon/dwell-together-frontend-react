@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import logo from "../dwell-logo-full.svg";
 import { Button, Dropdown, Navbar, NavItem } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class NavBar extends Component {
   handleClick = event => {
@@ -79,4 +81,13 @@ class NavBar extends Component {
   }
 }
 
-export default withRouter(NavBar);
+export default withRouter(
+  connect(state => {
+    return {
+      ...state.authReducer,
+      ...state.usersReducer,
+      ...state.householdReducer,
+      ...state.listCategoriesReducer
+    };
+  }, actions)(NavBar)
+);

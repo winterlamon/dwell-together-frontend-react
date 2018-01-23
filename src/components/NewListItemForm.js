@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import api from "../services/api";
 
 class NewListItemForm extends Component {
@@ -121,4 +123,11 @@ class NewListItemForm extends Component {
   }
 }
 
-export default NewListItemForm;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(NewListItemForm);

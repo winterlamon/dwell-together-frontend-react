@@ -89,6 +89,8 @@ export function usersReducer(
       };
     case "GET_ALL_USERS":
       return { ...state, users: action.users };
+    case "SET_SELECTED_USER":
+      return { ...state, selectedUser: action.selectedUser };
     case "SET_USER_HOUSEHOLD":
       return { ...state, selectedUser: action.user };
     default:

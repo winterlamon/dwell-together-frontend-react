@@ -1,5 +1,7 @@
 import React from "react";
 import { Col, Collapsible, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import HouseholdList from "../components/HouseholdList";
 import NewListForm from "../components/NewListForm";
 import NewListItemForm from "../components/NewListItemForm";
@@ -50,4 +52,11 @@ const HouseholdListContainer = props => {
   );
 };
 
-export default HouseholdListContainer;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(HouseholdListContainer);

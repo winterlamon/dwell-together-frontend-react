@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Button, Col, Row } from "react-materialize";
 import api from "../services/api";
+import * as actions from "../actions";
 
 class Login extends Component {
   state = {
@@ -12,26 +14,33 @@ class Login extends Component {
     }
   };
 
+  // handleChange = event => {
+  //   const newField = {
+  //     ...this.state.fields,
+  //     [event.target.name]: event.target.value
+  //   };
+  //   this.setState({ fields: newField });
+  // };
+
   handleChange = event => {
-    const newField = {
+    const loginFields = {
       ...this.state.fields,
       [event.target.name]: event.target.value
     };
-    this.setState({ fields: newField });
+    this.setState({ fields: loginFields });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props
-      .loginUser(this.state.fields.email, this.state.fields.password)
-      .then(res => {
-        if (res.error) {
-          this.setState({ error: true }, alert(res.error));
-        } else {
-          // this.props.handleLogin(res);
-          console.log;
-        }
-      });
+    console.log("props in LOGIN", this.props);
+    this.props.loginUser(this.state.fields).then(res => {
+      if (res.error) {
+        this.setState({ error: true }, alert(res.error));
+      } else {
+        this.props.history.push(`/profile/${res.username}`);
+        console.log(res);
+      }
+    });
   };
 
   render() {
@@ -105,12 +114,13 @@ class Login extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    ...state.authReducer,
-    ...state.usersReducer,
-    ...state.householdReducer,
-    ...state.listCategoriesReducer
-  }),
-  actions
-)(Login);
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer,
+      ...state.usersReducer,
+      ...state.householdReducer
+    }),
+    actions
+  )(Login)
+);

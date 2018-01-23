@@ -1,5 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import HouseholdMemberListContainer from "./HouseholdMemberListContainer";
 import HouseholdMemberSidebarContainer from "./HouseholdMemberSidebarContainer";
 // import HouseholdListContainer from "./HouseholdListContainer";
@@ -52,4 +54,11 @@ const MembersContainer = props => {
   );
 };
 
-export default MembersContainer;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(MembersContainer);

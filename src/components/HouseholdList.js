@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Card, CollapsibleItem, Icon } from "react-materialize";
 import api from "../services/api";
-// import { connect } from "react-redux";
-// import { changeHi } from "../actions";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 const HouseholdList = props => {
   const list = props.list;
@@ -86,10 +86,11 @@ const HouseholdList = props => {
   );
 };
 
-// const mapStateToProps = state => {
-//   return { hi: state.hi };
-// };
-//
-// export default connect(mapStateToProps, { changeHi: changeHi })(HouseholdList)
-
-export default HouseholdList;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(HouseholdList);

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import api from "../services/api";
 
 class Signup extends Component {
@@ -142,4 +144,11 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(Signup);

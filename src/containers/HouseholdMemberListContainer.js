@@ -1,5 +1,7 @@
 import React from "react";
 import { Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import HouseholdMemberDetails from "../components/HouseholdMemberDetails";
 
 const HouseholdMemberListContainer = props => {
@@ -26,4 +28,11 @@ const HouseholdMemberListContainer = props => {
   );
 };
 
-export default HouseholdMemberListContainer;
+export default connect(state => {
+  return {
+    ...state.authReducer,
+    ...state.usersReducer,
+    ...state.householdReducer,
+    ...state.listCategoriesReducer
+  };
+}, actions)(HouseholdMemberListContainer);
