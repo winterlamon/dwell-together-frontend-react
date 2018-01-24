@@ -83,6 +83,7 @@ class App extends Component {
       this.props.getCurrentUser();
       this.props.getAllUsers();
       this.props.getUserData(this.props.currentUser);
+      this.props.getLists(this.props.household);
       // this.props.getHousehold(this.props.currentUser);
     }
   }

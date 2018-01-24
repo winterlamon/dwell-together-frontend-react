@@ -147,7 +147,7 @@ export function authReducer(
         loading: !state.loading,
         household: {
           ...action.user.household,
-          household_key: hashids.encode(action.user.household.id)
+          household_key: hashids.encode(state.currentUser.household.id)
         }
       };
     case "REMOVE_HOUSEHOLD_USER":
@@ -179,23 +179,31 @@ export function authReducer(
     case "UPDATE_LIST":
       return { ...state, loading: !state.loading };
     case "DELETE_LIST":
-      return {
-        ...state,
-        loading: !state.loading,
-        household: {
-          ...state.household,
-          // lists: [...state.household.lists]
-          lists: action.lists
-        }
-      };
-    case "GET_ALL_LISTS":
       const householdLists = action.lists.filter(
         list => list.household_id === state.household.id
       );
       return {
         ...state,
         loading: !state.loading,
-        household: { ...state.household, lists: householdLists }
+        household: {
+          ...state.household,
+          // lists: [
+          //   ...state.household.lists.splice(
+          //     state.household.lists.indexOf(action.list),
+          //     1
+          //   )
+          // ]
+          lists: householdLists
+        }
+      };
+    case "GET_ALL_LISTS":
+      // const householdLists = action.lists.filter(
+      //   list => list.household_id === state.household.id
+      // );
+      return {
+        ...state,
+        loading: !state.loading,
+        household: { ...state.household, lists: action.lists }
       };
     case "CREATE_LIST_ITEM":
       return {

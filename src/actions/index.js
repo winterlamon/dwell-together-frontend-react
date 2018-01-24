@@ -243,9 +243,7 @@ export function deleteList(list) {
       method: "DELETE",
       headers: headers,
       body: JSON.stringify(list)
-    })
-      .then(res => res.json())
-      .then(lists => dispatch({ type: "GET_ALL_LISTS", lists }));
+    }).then(lists => dispatch({ type: "DELETE_LIST", lists }));
   };
 }
 
@@ -254,7 +252,7 @@ export function getLists(household) {
     dispatch({ type: "SET_LOADING" });
     dispatch({ type: "ASYNC_START" });
 
-    return fetch(`${baseURL}/users/${household.id}`)
+    return fetch(`${baseURL}/households/${household.id}`)
       .then(res => res.json())
       .then(lists => dispatch({ type: "GET_ALL_LISTS", lists }));
   };
