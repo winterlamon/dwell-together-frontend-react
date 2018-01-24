@@ -33,12 +33,51 @@
 //   }
 // };
 
-export function authReducer(state = { currentUser: {} }, action) {
+export function authReducer(
+  state = {
+    currentUser: {
+      id: null,
+      first_name: null,
+      last_name: null,
+      username: null,
+      email: null,
+      description: null,
+      avatar_url: null,
+      list_items: [],
+      token: null
+    }
+  },
+  action
+) {
   switch (action.type) {
     case "SET_CURRENT_USER":
-      return { ...state, currentUser: action.currentUser };
+      return {
+        ...state,
+        currentUser: action.user
+        // household: {
+        //   ...action.currentUser.household,
+        //   household_key: action.currentUser.household.household_key
+      };
+    case "UPDATE_USER":
+      return {
+        ...state,
+        currentUser: action.user
+      };
     case "LOG_OUT_USER":
-      return { ...state, currentUser: {} };
+      return {
+        ...state,
+        currentUser: {
+          id: null,
+          first_name: null,
+          last_name: null,
+          username: null,
+          email: null,
+          description: null,
+          avatar_url: null,
+          list_items: [],
+          token: null
+        }
+      };
     default:
       return state;
   }
@@ -62,6 +101,8 @@ export function householdReducer(
       return { ...state, household: action.household };
     case "GET_HOUSEHOLD":
       return { ...state, household: action.household };
+    case "SET_HOUSEHOLD":
+      return { ...state, household: action.user.household };
     default:
       return state;
   }
@@ -87,13 +128,13 @@ export function usersReducer(
     case "CREATE_USER":
       return {
         ...state,
-        selectedUser: action.user,
-        users: [...state.users.push(action.user)]
+        selectedUser: action.currentUser,
+        users: [...state.users.push(action.currentUser)]
       };
     case "GET_ALL_USERS":
       return { ...state, users: action.users };
     case "SET_SELECTED_USER":
-      return { ...state, selectedUser: action.selectedUser };
+      return { ...state, selectedUser: action.user };
     case "SET_USER_HOUSEHOLD":
       return { ...state, selectedUser: action.user };
     default:

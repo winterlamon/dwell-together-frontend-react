@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import api from "../services/api";
+import swal from "sweetalert";
 
 class Signup extends Component {
   state = {
@@ -11,7 +11,7 @@ class Signup extends Component {
       first_name: "",
       last_name: "",
       username: "",
-      household_id: "",
+      household_key: "",
       email: "",
       password: ""
     }
@@ -25,29 +25,20 @@ class Signup extends Component {
     this.setState({ fields: newField });
   };
 
-  handleButtonClick = event => {
+  handleSubmit = event => {
     event.preventDefault();
-    api.auth
-      .signup(
-        this.state.fields.first_name,
-        this.state.fields.last_name,
-        this.state.fields.username,
-        this.state.fields.household_id,
-        this.state.fields.email,
-        this.state.fields.password
-      )
-      .then(res => {
-        if (res.error) {
-          this.setState({ error: true }, console.log(res.error));
-        } else {
-          console.log("new user created");
-          this.props.history.push("/login");
-        }
-      });
+    this.props.signup(this.state.fields).then(res => {
+      debugger;
+      if (res.error) {
+        this.setState({ error: true }, swal(res.error));
+      } else {
+        // this.props.history.push(`/profile/${res.username}`);
+        this.props.history.push(`/login`);
+      }
+    });
   };
 
   render() {
-    console.log("signup state", this.state);
     return (
       <div>
         <Row>
@@ -99,8 +90,8 @@ class Signup extends Component {
                       Household Key
                       <input
                         type="text"
-                        name="household_id"
-                        id="household_id"
+                        name="household_key"
+                        id="household_key"
                         onChange={this.handleChange}
                       />
                     </label>
@@ -132,7 +123,7 @@ class Signup extends Component {
                   </Col>
                 </Row>
               </form>
-              <Button className="button" onClick={this.handleButtonClick}>
+              <Button className="button" onClick={this.handleSubmit}>
                 Create Account
               </Button>
               <Row />
@@ -148,7 +139,6 @@ export default connect(state => {
   return {
     ...state.authReducer,
     ...state.usersReducer,
-    ...state.householdReducer,
-    ...state.listCategoriesReducer
+    ...state.householdReducer
   };
 }, actions)(Signup);

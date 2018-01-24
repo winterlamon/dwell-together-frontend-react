@@ -22,22 +22,30 @@ export function getCurrentUser() {
       headers: headers
     })
       .then(res => res.json())
-      .then(currentUser => dispatch({ type: "SET_CURRENT_USER", currentUser }));
+      .then(user => {
+        dispatch({ type: "SET_CURRENT_USER", user });
+        dispatch({ type: "SET_SELECTED_USER", user });
+        dispatch({ type: "SET_HOUSEHOLD", user });
+      });
   };
 }
 
 export function loginUser({ email, password }) {
   return dispatch => {
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/auth`, {
       method: "POST",
       headers: headers,
       body: JSON.stringify({ email, password })
     })
       .then(res => res.json())
-      .then(currentUser => {
-        localStorage.setItem("token", currentUser.token);
-        dispatch({ type: "SET_CURRENT_USER", currentUser });
-        return currentUser;
+      .then(user => {
+        localStorage.setItem("token", user.token);
+        dispatch({ type: "SET_CURRENT_USER", user });
+        dispatch({ type: "SET_SELECTED_USER", user });
+        dispatch({ type: "SET_HOUSEHOLD", user });
+        return user;
       });
   };
 }
@@ -49,15 +57,16 @@ export function logoutUser() {
   };
 }
 
-export function signup(
+export function signup({
   first_name,
   last_name,
   username,
   household_key,
   email,
   password
-) {
+}) {
   return dispatch => {
+    dispatch({ type: "ASYNC_START" });
     return fetch(`${baseURL}/users`, {
       method: "POST",
       headers: headers,
@@ -71,11 +80,11 @@ export function signup(
       })
     })
       .then(res => res.json())
-      .then(user => {
-        localStorage.setItem("token", user.token);
-        dispatch({ type: "CREATE_USER", user });
-        // this.props.history.push(
-        //   `/profile/${this.state.auth.currentUser.username}`
+      .then(currentUser => {
+        localStorage.setItem("token", currentUser.token);
+        dispatch({ type: "CREATE_USER", currentUser });
+        dispatch({ type: "SET_CURRENT_USER", currentUser });
+        dispatch({ type: "SET_HOUSEHOLD", currentUser });
       });
   };
 }
@@ -110,7 +119,21 @@ export function addUserToHousehold(user, household) {
       body: JSON.stringify({ household_id: household.id })
     })
       .then(res => res.json())
-      .then(user => dispatch({ type: "SET_USER_HOUSEHOLD", user }));
+      .then(currentUser =>
+        dispatch({ type: "SET_USER_HOUSEHOLD", currentUser })
+      );
+  };
+}
+
+export function updateUserDetails(currentUser) {
+  return dispatch => {
+    return fetch(`${baseURL}/users/${currentUser.id}`, {
+      method: "PATCH",
+      headers: headers,
+      body: JSON.stringify({ currentUser })
+    })
+      .then(res => res.json())
+      .then(currentUser => dispatch({ type: "UPDATE_USER", currentUser }));
   };
 }
 

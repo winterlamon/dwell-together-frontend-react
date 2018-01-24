@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, CollapsibleItem, Icon } from "react-materialize";
+import { Button, CollapsibleItem, Icon } from "react-materialize";
 import api from "../services/api";
 import { connect } from "react-redux";
 import * as actions from "../actions";

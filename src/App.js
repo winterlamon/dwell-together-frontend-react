@@ -15,7 +15,6 @@ import MembersContainer from "./containers/MembersContainer";
 import HouseholdListContainer from "./containers/HouseholdListContainer";
 import SignupContainer from "./containers/SignupContainer";
 import Login from "./components/Login";
-import api from "./services/api";
 
 class App extends Component {
   // state = {
@@ -84,37 +83,20 @@ class App extends Component {
     if (localStorage.getItem("token")) {
       this.props.getCurrentUser();
       this.props.getAllUsers();
-      // .then(data => {
-      //   this.setState({ auth: { currentUser: data } });
+      this.props.getUserData(this.props.currentUser);
     }
-    //     .then(data => {
-    //       this.setState({
-    //         lists: this.state.auth.currentUser.household.lists,
-    //         list_items: this.state.auth.currentUser.household.list_items
-    //       });
-    //       console.log("CDM in APP");
-    //       this.props.history.push(
-    //         `/profile/${this.state.auth.currentUser.username}`
-    //       );
-    //     });
-    //   // api.users.getAllUsers().then(data => {
-    //   //   this.setState({ users: data });
-    //   // });
-    // }
   }
 
   render() {
     console.log("props in App", this.props);
     const loggedIn = !!this.props.currentUser.id;
-    console.log("location in APP", this.props.location);
-    // debugger;
 
     return (
       <Router>
         <div>
           <NavBar
-            currentUser={this.props.currentUser}
-            handleLogout={this.handleLogout}
+          // currentUser={this.props.currentUser}
+          // handleLogout={this.handleLogout}
           />
           <Route
             exact
@@ -136,8 +118,8 @@ class App extends Component {
               ) : (
                 <SignupContainer
                   {...props}
-                  handleSignup={api.signup}
-                  currentUser={this.props.currentUser}
+                  // handleSignup={api.signup}
+                  // currentUser={this.props.currentUser}
                 />
               );
             }}
@@ -182,8 +164,7 @@ class App extends Component {
               ) : (
                 <ProfileContainer
                   {...props}
-                  currentUser={this.props.currentUser}
-                  user={this.props.selectedUser}
+                  selectedUser={this.props.selectedUser}
                 />
               );
             }}
@@ -199,7 +180,6 @@ class App extends Component {
                   {...props}
                   currentUser={this.props.currentUser}
                   users={this.props.users}
-                  refreshCurrentUser={this.refreshCurrentUser}
                 />
               );
             }}
@@ -215,7 +195,6 @@ class App extends Component {
                   {...props}
                   currentUser={this.props.currentUser}
                   users={this.props.users}
-                  refreshCurrentUser={this.refreshCurrentUser}
                 />
               );
             }}

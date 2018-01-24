@@ -17,19 +17,6 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 
 injectTapEventPlugin();
 
-// const reducer = (state = { hi: true }, action) => {
-//   console.log("IN THE REDUCER");
-//   console.log("state", state);
-//   console.log("action", action);
-//
-//   switch (action.type) {
-//     case "CHANGE_HI":
-//       return { hi: !state.hi };
-//     default:
-//       return state;
-//   }
-// };
-
 const rootReducer = combineReducers({
   authReducer,
   householdReducer,
@@ -38,8 +25,6 @@ const rootReducer = combineReducers({
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-
-console.log("redux store in index.js", store.getState());
 
 const Root = () => {
   return (

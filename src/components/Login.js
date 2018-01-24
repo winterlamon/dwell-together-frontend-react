@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Button, Col, Row } from "react-materialize";
-import api from "../services/api";
+// import api from "../services/api";
 import * as actions from "../actions";
+import swal from "sweetalert";
 
 class Login extends Component {
   state = {
@@ -13,14 +14,6 @@ class Login extends Component {
       password: ""
     }
   };
-
-  // handleChange = event => {
-  //   const newField = {
-  //     ...this.state.fields,
-  //     [event.target.name]: event.target.value
-  //   };
-  //   this.setState({ fields: newField });
-  // };
 
   handleChange = event => {
     const loginFields = {
@@ -32,13 +25,11 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("props in LOGIN", this.props);
     this.props.loginUser(this.state.fields).then(res => {
       if (res.error) {
-        this.setState({ error: true }, alert(res.error));
+        this.setState({ error: true }, () => swal(res.error));
       } else {
         this.props.history.push(`/profile/${res.username}`);
-        console.log(res);
       }
     });
   };

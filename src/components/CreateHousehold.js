@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import swal from "sweetalert";
 
 class CreateHousehold extends Component {
   state = {
@@ -20,11 +21,12 @@ class CreateHousehold extends Component {
         this.setState({ error: true }, console.log(res.error));
       } else {
         console.log("household created");
-        alert(
-          `${this.props.household.nickname} has been created. Use the key ${
-            this.props.household.household_key
-          } to join a household.`
-        );
+        swal({
+          title: `${this.props.household.household_key}`,
+          text: `${
+            this.props.household.nickname
+          } has been created. Use the above key to join this household.`
+        });
         // this.props.history.push("/dashboard");
       }
     });

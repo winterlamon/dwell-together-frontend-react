@@ -17,12 +17,13 @@ class NavBar extends Component {
       <div>
         <Navbar
           brand={
-            <img
-              href="/"
-              className="navbar-logo navbar-contents"
-              src={logo}
-              alt="D'well Together logo with two hands holding up a house"
-            />
+            <Link to="/">
+              <img
+                className="navbar-logo navbar-contents"
+                src={logo}
+                alt="D'well Together logo with two hands holding up a house"
+              />
+            </Link>
           }
           className="navbar blue darken-4 black-text"
           right
@@ -86,8 +87,7 @@ export default withRouter(
     return {
       ...state.authReducer,
       ...state.usersReducer,
-      ...state.householdReducer,
-      ...state.listCategoriesReducer
+      ...state.householdReducer
     };
   }, actions)(NavBar)
 );

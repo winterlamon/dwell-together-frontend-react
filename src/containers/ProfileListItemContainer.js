@@ -1,8 +1,8 @@
 import React from "react";
-import { Col, Row } from "react-materialize";
+import { Row } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import HouseholdList from "../components/HouseholdList";
+// import HouseholdList from "../components/HouseholdList";
 import ListItem from "../components/ListItem";
 
 const ProfileListItemContainer = props => {
