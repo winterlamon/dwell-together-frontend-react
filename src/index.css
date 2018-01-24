@@ -87,9 +87,13 @@ thead {
   border-color: #999999;
   border-style: solid;
   /* border-left: #e0e0e0; */
-  border-top: #e0e0e0;
+  /* border-top: #e0e0e0;
   border-bottom: #e0e0e0;
-  border-right: #e0e0e0;
+  border-right: #e0e0e0; */
+  padding-top: 6rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
 }
 
 .household-lists {
@@ -121,6 +125,12 @@ thead {
   border-width: 2px;
   position: relative;
   /* transform: translate(-50%, -50%); */
+}
+
+.members {
+  padding-left: 2rem;
+  padding-right: 4rem;
+  padding-top: 3rem;
 }
 
 .member-button {

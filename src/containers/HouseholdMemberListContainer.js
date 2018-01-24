@@ -19,6 +19,9 @@ const HouseholdMemberListContainer = props => {
   return (
     <div className="household-members-list">
       <Row>
+        <h1>Welcome to {props.household.nickname}!</h1>
+      </Row>
+      <Row>
         <div>
           <h3>Members</h3>
         </div>
