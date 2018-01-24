@@ -302,6 +302,11 @@ thead {
 
 .profile-avatar {
   height: 12rem;
+  /* padding-right: 4rem; */
+}
+
+.profile-avatar-column {
+  /* padding-right: 4rem; */
 }
 
 .profile-items {

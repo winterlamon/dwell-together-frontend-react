@@ -1,14 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Row } from "react-materialize";
-import api from "../services/api";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
 class HouseholdMemberDetails extends React.Component {
-  handleClick = event => {
+  // handleRemoveClick = event => {
+  //   event.preventDefault();
+  //   this.props.removeUserFromHousehold(member);
+  // };
+
+  handleMemberClick = event => {
     event.preventDefault();
-    api.users.removeUserFromHousehold(this.props.member);
+    this.props.getUserData(this.props.member);
   };
 
   render() {
@@ -17,17 +21,19 @@ class HouseholdMemberDetails extends React.Component {
     return (
       <div className="profile">
         <Row className="vertical-align">
-          <Col s={2}>
+          <Col s={3} className="profile-avatar-column">
             <img
               className="profile-avatar"
               src={member.avatar_url}
               alt="user avatar"
             />
           </Col>
-          <Col s={10}>
+          <Col s={9} className="member-details">
             <div>
               <Link to={`/profile/${member.username}`}>
-                <h1>{member.first_name + " " + member.last_name}</h1>
+                <h1 onClick={this.handleMemberClick}>
+                  {member.first_name + " " + member.last_name}
+                </h1>
               </Link>
               <h3>{member.username}</h3>
               <p>{member.description}</p>
