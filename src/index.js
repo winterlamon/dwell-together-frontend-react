@@ -4,12 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { createStore, applyMiddleware, combineReducers } from "redux";
-import {
-  authReducer,
-  householdReducer,
-  usersReducer,
-  listCategoriesReducer
-} from "./reducers";
+import { authReducer } from "./reducers";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import registerServiceWorker from "./registerServiceWorker";
@@ -18,10 +13,7 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
 const rootReducer = combineReducers({
-  authReducer,
-  householdReducer,
-  usersReducer,
-  listCategoriesReducer
+  authReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
