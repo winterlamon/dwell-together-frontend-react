@@ -214,7 +214,8 @@ export function createList(household, name, category) {
       body: JSON.stringify({ household_id: household.id, name, category })
     })
       .then(res => res.json())
-      .then(list => dispatch({ type: "CREATE_LIST", list }));
+      .then(list => dispatch({ type: "CREATE_LIST", list }))
+      .then(list => dispatch({ type: "SET_LOADING" }));
   };
 }
 
@@ -242,7 +243,9 @@ export function deleteList(list) {
       method: "DELETE",
       headers: headers,
       body: JSON.stringify(list)
-    }).then(list => dispatch({ type: "DELETE_LIST", list }));
+    })
+      .then(res => res.json())
+      .then(lists => dispatch({ type: "GET_ALL_LISTS", lists }));
   };
 }
 
