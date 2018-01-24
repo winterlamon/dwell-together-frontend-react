@@ -7,7 +7,7 @@ import NewListForm from "../components/NewListForm";
 import NewListItemForm from "../components/NewListItemForm";
 
 const HouseholdListContainer = props => {
-  const lists = props.currentUser.household.lists;
+  const lists = props.household.lists;
   const allHouseholdLists = lists.map(list => (
     <HouseholdList key={`household-list-` + list.id.toString()} list={list} />
   ));

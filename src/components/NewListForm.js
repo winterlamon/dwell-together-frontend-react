@@ -32,6 +32,11 @@ class NewListForm extends Component {
       .then(res => {
         if (res.error) {
           this.setState({ error: true }, console.log(res.error));
+        } else {
+          this.setState({
+            list: { ...this.state.list, name: "", category: "" }
+          });
+          this.props.forceRender();
         }
       });
   };

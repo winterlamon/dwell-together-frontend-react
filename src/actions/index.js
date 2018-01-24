@@ -18,6 +18,8 @@ export var hashids = new Hashids("Household", 6);
 
 export function getCurrentUser() {
   return dispatch => {
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/current_user`, {
       headers: headers
     })
@@ -25,7 +27,7 @@ export function getCurrentUser() {
       .then(user => {
         dispatch({ type: "SET_CURRENT_USER", user });
         dispatch({ type: "SET_SELECTED_USER", user });
-        // dispatch({ type: "SET_HOUSEHOLD", user });
+        dispatch({ type: "SET_HOUSEHOLD", user });
       });
   };
 }
@@ -92,6 +94,8 @@ export function signup({
 
 export function getAllUsers() {
   return dispatch => {
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/users`, {
       headers: headers
     })
@@ -104,6 +108,9 @@ export function getAllUsers() {
 
 export function getUserData(user) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/users/${user.id}`)
       .then(res => res.json())
       .then(selectedUser =>
@@ -114,6 +121,9 @@ export function getUserData(user) {
 
 export function addUserToHousehold(user, household) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/users/${user.id}`, {
       method: "PATCH",
       headers: headers,
@@ -128,6 +138,9 @@ export function addUserToHousehold(user, household) {
 
 export function updateUserDetails(user) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/users/${user.id}`, {
       method: "PATCH",
       headers: headers,
@@ -140,6 +153,9 @@ export function updateUserDetails(user) {
 
 export function removeUserFromHousehold(user) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/users/${user.id}`, {
       method: "PATCH",
       headers: headers,
@@ -154,6 +170,8 @@ export function removeUserFromHousehold(user) {
 
 export function createHousehold(nickname) {
   return dispatch => {
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/households`, {
       method: "POST",
       headers: headers,
@@ -174,6 +192,9 @@ export function createHousehold(nickname) {
 
 export function getHousehold(user) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/households/${user.household.id}`)
       .then(res => res.json())
       .then(household => dispatch({ type: "GET_HOUSEHOLD", household }));
@@ -184,6 +205,9 @@ export function getHousehold(user) {
 
 export function createList(household, name, category) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/lists`, {
       method: "POST",
       headers: headers,
@@ -196,6 +220,9 @@ export function createList(household, name, category) {
 
 export function updateList(list) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/lists/${list.id}`, {
       method: "POST",
       headers: headers,
@@ -208,18 +235,22 @@ export function updateList(list) {
 
 export function deleteList(list) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/lists/${list.id}`, {
       method: "DELETE",
       headers: headers,
       body: JSON.stringify(list)
-    })
-      .then(res => res.json())
-      .then(list => dispatch({ type: "DELETE_LIST", list }));
+    }).then(list => dispatch({ type: "DELETE_LIST", list }));
   };
 }
 
 export function getLists(household) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/users/${household.id}`)
       .then(res => res.json())
       .then(lists => dispatch({ type: "GET_ALL_LISTS", lists }));
@@ -230,6 +261,9 @@ export function getLists(household) {
 
 export function createListItem(name, description, due_date, user, list) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/list_items`, {
       method: "POST",
       headers: headers,
@@ -249,12 +283,21 @@ export function createListItem(name, description, due_date, user, list) {
 
 export function completeListItem(list_item) {
   return dispatch => {
+    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${baseURL}/list_items/${list_item.id}`, {
       method: "PATCH",
       headers: headers,
       body: JSON.stringify({ ...list_item, completed: true })
     })
       .then(res => res.json())
-      .then(list_item => dispatch({ type: "UPDATE_LIST", list_item }));
+      .then(list_item => dispatch({ type: "UPDATE_LIST_ITEM", list_item }));
+  };
+}
+
+export function forceRender() {
+  return dispatch => {
+    dispatch({ type: "SET_LOADING" });
   };
 }

@@ -37,6 +37,7 @@ import { hashids } from "../actions";
 
 export function authReducer(
   state = {
+    loading: true,
     currentUser: {
       id: null,
       first_name: null,
@@ -88,17 +89,19 @@ export function authReducer(
     case "UPDATE_USER":
       return {
         ...state,
+        loading: false,
         currentUser: action.user
       };
     case "GET_ALL_USERS":
       return { ...state, users: action.users };
     case "SET_SELECTED_USER":
-      return { ...state, selectedUser: action.user };
+      return { ...state, loading: false, selectedUser: action.user };
     case "SET_USER_HOUSEHOLD":
-      return { ...state, selectedUser: action.user };
+      return { ...state, loading: false, selectedUser: action.user };
     case "LOG_OUT_USER":
       return {
         ...state,
+        loading: false,
         currentUser: {
           id: null,
           first_name: null,
@@ -138,17 +141,10 @@ export function authReducer(
           household_key: hashids.encode(action.household.id)
         }
       };
-    case "GET_HOUSEHOLD":
-      return {
-        ...state,
-        household: {
-          ...action.household,
-          household_key: hashids.encode(action.household.id)
-        }
-      };
     case "SET_HOUSEHOLD":
       return {
         ...state,
+        loading: false,
         household: {
           ...action.user.household,
           household_key: hashids.encode(action.user.household.id)
@@ -157,6 +153,7 @@ export function authReducer(
     case "REMOVE_HOUSEHOLD_USER":
       return {
         ...state,
+        loading: false,
         household: {
           ...action.user.household,
           members: [
@@ -170,6 +167,47 @@ export function authReducer(
           ]
         }
       };
+    case "CREATE_LIST":
+      return {
+        ...state,
+        loading: true,
+        household: {
+          ...state.household,
+          lists: [...state.household.lists, action.list]
+        }
+      };
+    case "UPDATE_LIST":
+      return { ...state, loading: true };
+    case "DELETE_LIST":
+      return {
+        ...state,
+        loading: true,
+        household: {
+          ...state.household,
+          // lists: [...state.household.lists]
+          lists: [
+            ...state.household.lists.splice(
+              state.household.lists.indexOf(action.list),
+              1
+            )
+          ]
+        }
+      };
+    case "GET_ALL_LISTS":
+      return { ...state, loading: true };
+    case "CREATE_LIST_ITEM":
+      return {
+        ...state,
+        loading: true,
+        household: {
+          ...state.household,
+          list_items: [...state.household.list_items, action.list_item]
+        }
+      };
+    case "UPDATE_LIST_ITEM":
+      return { ...state, loading: true };
+    case "SET_LOADING":
+      return { ...state, loading: true };
     default:
       return state;
   }
