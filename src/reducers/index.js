@@ -1,3 +1,5 @@
+import { hashids } from "../actions";
+
 // state = {
 //   auth: {
 //     currentUser: {
@@ -98,11 +100,29 @@ export function householdReducer(
 ) {
   switch (action.type) {
     case "CREATE_HOUSEHOLD":
-      return { ...state, household: action.household };
+      return {
+        ...state,
+        household: {
+          ...action.household,
+          household_key: hashids.encode(action.user.household.id)
+        }
+      };
     case "GET_HOUSEHOLD":
-      return { ...state, household: action.household };
+      return {
+        ...state,
+        household: {
+          ...action.household,
+          household_key: hashids.encode(action.user.household.id)
+        }
+      };
     case "SET_HOUSEHOLD":
-      return { ...state, household: action.user.household };
+      return {
+        ...state,
+        household: {
+          ...action.user.household,
+          household_key: hashids.encode(action.user.household.id)
+        }
+      };
     default:
       return state;
   }

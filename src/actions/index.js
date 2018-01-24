@@ -11,7 +11,7 @@ const headers = {
 // household id hashkey (6 characters) //
 
 var Hashids = require("hashids");
-var hashids = new Hashids("Household", 6);
+export var hashids = new Hashids("Household", 6);
 // console.log(hashids.encode(1, 2, 3)); // Z4UrtW
 
 // ==== USERS ==== //

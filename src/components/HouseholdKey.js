@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 
 const HouseholdKey = props => {
+  console.log("props in household key", props);
   return (
     <div className="household-members-list form">
       <Row>
@@ -13,7 +14,9 @@ const HouseholdKey = props => {
       </Row>
       <Row>
         <div>
-          <h3 classname="red darken-4">{props.household.household_key}</h3>
+          <h3 className="blue-text text-darken-4 household-key">
+            {props.household.household_key}
+          </h3>
         </div>
       </Row>
     </div>
