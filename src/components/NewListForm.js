@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import api from "../services/api";
 
 class NewListForm extends Component {
   state = {
@@ -24,7 +23,7 @@ class NewListForm extends Component {
 
   handleButtonClick = event => {
     event.preventDefault();
-    api.lists
+    this.props
       .createList(
         this.state.list.household,
         this.state.list.name,
@@ -33,17 +32,8 @@ class NewListForm extends Component {
       .then(res => {
         if (res.error) {
           this.setState({ error: true }, console.log(res.error));
-        } else {
-          this.props.refreshCurrentUser();
         }
       });
-    this.setState({
-      list: {
-        household: this.props.currentUser.household,
-        name: "",
-        category: ""
-      }
-    });
   };
 
   render() {
@@ -90,7 +80,6 @@ export default connect(state => {
   return {
     ...state.authReducer,
     ...state.usersReducer,
-    ...state.householdReducer,
-    ...state.listCategoriesReducer
+    ...state.householdReducer
   };
 }, actions)(NewListForm);

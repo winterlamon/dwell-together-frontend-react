@@ -12,7 +12,6 @@ const HouseholdMemberListContainer = props => {
     <HouseholdMemberDetails
       key={`${household.nickname}-member-` + member.id.toString()}
       member={member}
-      currentUser={props.currentUser}
     />
   ));
 

@@ -6,11 +6,11 @@ import * as actions from "../actions";
 import ListItem from "../components/ListItem";
 
 const ProfileListItemContainer = props => {
-  const allUserListItems = props.userListItems.map(item => (
+  const allUserListItems = props.currentUser.list_items.map((item, index) => (
     <ListItem
       key={`list-item-` + item.id.toString()}
       item={item}
-      currentUser={props.currentUser}
+      index={index}
     />
   ));
 
@@ -43,7 +43,6 @@ export default connect(state => {
   return {
     ...state.authReducer,
     ...state.usersReducer,
-    ...state.householdReducer,
-    ...state.listCategoriesReducer
+    ...state.householdReducer
   };
 }, actions)(ProfileListItemContainer);

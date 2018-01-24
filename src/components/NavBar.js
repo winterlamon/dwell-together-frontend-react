@@ -29,11 +29,6 @@ class NavBar extends Component {
           right
         >
           {loggedIn ? (
-            <div>
-              {console.log(`${this.props.currentUser.username} is logged in.`)}
-            </div>
-          ) : null}
-          {loggedIn ? (
             <div className="navbar-contents">
               <Dropdown
                 trigger={

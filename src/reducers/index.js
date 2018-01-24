@@ -104,7 +104,7 @@ export function householdReducer(
         ...state,
         household: {
           ...action.household,
-          household_key: hashids.encode(action.user.household.id)
+          household_key: hashids.encode(action.household.id)
         }
       };
     case "GET_HOUSEHOLD":
@@ -112,7 +112,7 @@ export function householdReducer(
         ...state,
         household: {
           ...action.household,
-          household_key: hashids.encode(action.user.household.id)
+          household_key: hashids.encode(action.household.id)
         }
       };
     case "SET_HOUSEHOLD":
@@ -121,6 +121,22 @@ export function householdReducer(
         household: {
           ...action.user.household,
           household_key: hashids.encode(action.user.household.id)
+        }
+      };
+    case "REMOVE_HOUSEHOLD_USER":
+      return {
+        ...state,
+        household: {
+          ...action.user.household,
+          members: [
+            ...action.user.household.members.slice(
+              0,
+              action.user.household.members.indexOf(action.user)
+            ),
+            ...action.user.household.members.slice(
+              action.user.household.members.indexOf(action.user) + 1
+            )
+          ]
         }
       };
     default:

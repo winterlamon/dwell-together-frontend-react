@@ -11,25 +11,13 @@ class Profile extends React.Component {
   }
 
   render() {
-    const user = this.props.currentUser;
-    const household = user.household;
-    const userListItems = user.list_items;
-
-    console.log("user list items", userListItems);
-
     return (
       <div className="profile">
         <Row>
-          <UserProfileInfo
-            currentUser={this.props.currentUser}
-            household={household}
-          />
+          <UserProfileInfo />
         </Row>
         <Row>
-          <ProfileListItemContainer
-            currentUser={this.props.currentUser}
-            userListItems={userListItems}
-          />
+          <ProfileListItemContainer />
         </Row>
       </div>
     );
@@ -40,7 +28,6 @@ export default connect(state => {
   return {
     ...state.authReducer,
     ...state.usersReducer,
-    ...state.householdReducer,
-    ...state.listCategoriesReducer
+    ...state.householdReducer
   };
 }, actions)(Profile);

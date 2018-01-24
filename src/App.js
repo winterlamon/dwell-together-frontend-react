@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import * as actions from "./actions";
 import NavBar from "./components/NavBar";
 import LandingPageContainer from "./containers/LandingPageContainer";
-// import DashboardContainer from "./containers/DashboardContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 import MembersContainer from "./containers/MembersContainer";
 import HouseholdListContainer from "./containers/HouseholdListContainer";
@@ -84,6 +83,7 @@ class App extends Component {
       this.props.getCurrentUser();
       this.props.getAllUsers();
       this.props.getUserData(this.props.currentUser);
+      // this.props.getHousehold(this.props.currentUser);
     }
   }
 

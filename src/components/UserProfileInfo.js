@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import swal from "sweetalert";
+// import swal from "sweetalert";
 
 class Profile extends Component {
   state = {

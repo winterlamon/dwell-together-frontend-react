@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Collapsible, Row } from "react-materialize";
+import { Col, Row } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import HouseholdList from "../components/HouseholdList";
@@ -9,12 +9,7 @@ import NewListItemForm from "../components/NewListItemForm";
 const HouseholdListContainer = props => {
   const lists = props.currentUser.household.lists;
   const allHouseholdLists = lists.map(list => (
-    <HouseholdList
-      key={`household-list-` + list.id.toString()}
-      list={list}
-      currentUser={props.currentUser}
-      refreshCurrentUser={props.refreshCurrentUser}
-    />
+    <HouseholdList key={`household-list-` + list.id.toString()} list={list} />
   ));
 
   return (
@@ -23,7 +18,7 @@ const HouseholdListContainer = props => {
         <Col s={8}>
           <div>
             <h3>Lists</h3>
-            <Collapsible popout>{allHouseholdLists}</Collapsible>
+            {allHouseholdLists}
           </div>
         </Col>
         <Col s={4} className="household center">
@@ -33,18 +28,10 @@ const HouseholdListContainer = props => {
             </div>
           </Row>
           <Row>
-            <NewListForm
-              currentUser={props.currentUser}
-              refreshCurrentUser={props.refreshCurrentUser}
-            />
+            <NewListForm />
           </Row>
           <Row>
-            <NewListItemForm
-              currentUser={props.currentUser}
-              users={props.users}
-              lists={lists}
-              refreshCurrentUser={props.refreshCurrentUser}
-            />
+            <NewListItemForm lists={lists} />
           </Row>
         </Col>
       </Row>

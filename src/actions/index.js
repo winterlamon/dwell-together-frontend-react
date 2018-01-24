@@ -25,7 +25,7 @@ export function getCurrentUser() {
       .then(user => {
         dispatch({ type: "SET_CURRENT_USER", user });
         dispatch({ type: "SET_SELECTED_USER", user });
-        dispatch({ type: "SET_HOUSEHOLD", user });
+        // dispatch({ type: "SET_HOUSEHOLD", user });
       });
   };
 }
@@ -44,7 +44,7 @@ export function loginUser({ email, password }) {
         localStorage.setItem("token", user.token);
         dispatch({ type: "SET_CURRENT_USER", user });
         dispatch({ type: "SET_SELECTED_USER", user });
-        dispatch({ type: "SET_HOUSEHOLD", user });
+        // dispatch({ type: "SET_HOUSEHOLD", user });
         return user;
       });
   };
@@ -80,11 +80,12 @@ export function signup({
       })
     })
       .then(res => res.json())
-      .then(currentUser => {
-        localStorage.setItem("token", currentUser.token);
-        dispatch({ type: "CREATE_USER", currentUser });
-        dispatch({ type: "SET_CURRENT_USER", currentUser });
-        dispatch({ type: "SET_HOUSEHOLD", currentUser });
+      .then(user => {
+        localStorage.setItem("token", user.token);
+        dispatch({ type: "CREATE_USER", user });
+        dispatch({ type: "SET_CURRENT_USER", user });
+        // dispatch({ type: "SET_HOUSEHOLD", user });
+        return user;
       });
   };
 }
@@ -125,15 +126,15 @@ export function addUserToHousehold(user, household) {
   };
 }
 
-export function updateUserDetails(currentUser) {
+export function updateUserDetails(user) {
   return dispatch => {
-    return fetch(`${baseURL}/users/${currentUser.id}`, {
+    return fetch(`${baseURL}/users/${user.id}`, {
       method: "PATCH",
       headers: headers,
-      body: JSON.stringify({ currentUser })
+      body: JSON.stringify({ user })
     })
       .then(res => res.json())
-      .then(currentUser => dispatch({ type: "UPDATE_USER", currentUser }));
+      .then(user => dispatch({ type: "UPDATE_USER", user }));
   };
 }
 
@@ -145,7 +146,7 @@ export function removeUserFromHousehold(user) {
       body: JSON.stringify({ household_id: 1 })
     })
       .then(res => res.json())
-      .then(user => dispatch({ type: "SET_USER_HOUSEHOLD", user }));
+      .then(user => dispatch({ type: "REMOVE_HOUSEHOLD_USER", user }));
   };
 }
 
@@ -173,9 +174,7 @@ export function createHousehold(nickname) {
 
 export function getHousehold(user) {
   return dispatch => {
-    return fetch(`${baseURL}/households/${user.household.id}`, {
-      headers: headers
-    })
+    return fetch(`${baseURL}/households/${user.household.id}`)
       .then(res => res.json())
       .then(household => dispatch({ type: "GET_HOUSEHOLD", household }));
   };
