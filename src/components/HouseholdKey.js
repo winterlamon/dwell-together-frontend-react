@@ -25,6 +25,6 @@ const HouseholdKey = props => {
 
 export default connect(state => {
   return {
-    ...state.householdReducer
+    ...state.authReducer
   };
 }, actions)(HouseholdKey);

@@ -84,8 +84,6 @@ class CreateHousehold extends Component {
 
 export default connect(state => {
   return {
-    ...state.authReducer,
-    ...state.usersReducer,
-    ...state.householdReducer
+    ...state.authReducer
   };
 }, actions)(CreateHousehold);

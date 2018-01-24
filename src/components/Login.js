@@ -108,9 +108,7 @@ class Login extends Component {
 export default withRouter(
   connect(
     state => ({
-      ...state.authReducer,
-      ...state.usersReducer,
-      ...state.householdReducer
+      ...state.authReducer
     }),
     actions
   )(Login)

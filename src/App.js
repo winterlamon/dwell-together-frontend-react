@@ -226,10 +226,7 @@ class App extends Component {
 export default withRouter(
   connect(state => {
     return {
-      ...state.authReducer,
-      ...state.usersReducer,
-      ...state.householdReducer,
-      ...state.listCategoriesReducer
+      ...state.authReducer
     };
   }, actions)(App)
 );

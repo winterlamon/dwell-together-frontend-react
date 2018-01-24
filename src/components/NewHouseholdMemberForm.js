@@ -64,9 +64,6 @@ class NewHouseholdMemberForm extends React.Component {
 
 export default connect(state => {
   return {
-    ...state.authReducer,
-    ...state.usersReducer,
-    ...state.householdReducer,
-    ...state.listCategoriesReducer
+    ...state.authReducer
   };
 }, actions)(NewHouseholdMemberForm);

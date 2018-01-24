@@ -80,9 +80,7 @@ class NavBar extends Component {
 export default withRouter(
   connect(state => {
     return {
-      ...state.authReducer,
-      ...state.usersReducer,
-      ...state.householdReducer
+      ...state.authReducer
     };
   }, actions)(NavBar)
 );

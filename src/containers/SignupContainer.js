@@ -29,8 +29,6 @@ const SignupContainer = props => {
 
 export default connect(state => {
   return {
-    ...state.authReducer,
-    ...state.usersReducer,
-    ...state.householdReducer
+    ...state.authReducer
   };
 }, actions)(SignupContainer);

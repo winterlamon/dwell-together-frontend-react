@@ -127,9 +127,6 @@ class Profile extends Component {
 
 export default connect(state => {
   return {
-    ...state.authReducer,
-    ...state.usersReducer,
-    ...state.householdReducer,
-    ...state.listCategoriesReducer
+    ...state.authReducer
   };
 }, actions)(Profile);

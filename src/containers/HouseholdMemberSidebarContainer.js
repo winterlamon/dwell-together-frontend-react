@@ -30,9 +30,6 @@ const HouseholdMemberSidebarContainer = props => {
 
 export default connect(state => {
   return {
-    ...state.authReducer,
-    ...state.usersReducer,
-    ...state.householdReducer,
-    ...state.listCategoriesReducer
+    ...state.authReducer
   };
 }, actions)(HouseholdMemberSidebarContainer);
