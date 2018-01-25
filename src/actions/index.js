@@ -299,10 +299,10 @@ export function completeListItem(list_item) {
     return fetch(`${baseURL}/list_items/${list_item.id}`, {
       method: "PATCH",
       headers: headers,
-      body: JSON.stringify({ ...list_item, completed: true })
+      body: JSON.stringify({ ...list_item, completed: !list_item.completed })
     })
       .then(res => res.json())
-      .then(list_item => dispatch({ type: "UPDATE_LIST_ITEM", list_item }));
+      .then(list_items => dispatch({ type: "UPDATE_LIST_ITEM", list_items }));
   };
 }
 
