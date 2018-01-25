@@ -302,7 +302,7 @@ export function completeListItem(list_item) {
       body: JSON.stringify({ ...list_item, completed: !list_item.completed })
     })
       .then(res => res.json())
-      .then(list_items => dispatch({ type: "UPDATE_LIST_ITEM", list_items }));
+      .then(list_item => dispatch({ type: "UPDATE_LIST_ITEM", list_item }));
   };
 }
 

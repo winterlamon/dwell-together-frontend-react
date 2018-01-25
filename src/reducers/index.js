@@ -179,10 +179,30 @@ export function authReducer(
         }
       };
     case "UPDATE_LIST_ITEM":
+      //USER
+      let newListItems = state.currentUser.list_items.slice();
+
+      let foundCurrentUser = newListItems.find(
+        li => li.id === action.list_item.id
+      );
+      let indexCurrentUser = newListItems.indexOf(foundCurrentUser);
+
+      newListItems[indexCurrentUser] = action.list_item;
+      //HOUSEHOLD
+      let newHouseholdLIs = [...state.household.list_items];
+
+      let foundHousehold = newHouseholdLIs.find(
+        li => li.id === action.list_item.id
+      );
+      let indexHousehold = newHouseholdLIs.indexOf(foundHousehold);
+
+      newHouseholdLIs[indexHousehold] = action.list_item;
+
       return {
         ...state,
         loading: !state.loading,
-        currentUser: { ...state.currentUser, list_items: action.list_items }
+        currentUser: { ...state.currentUser, list_items: newListItems },
+        household: { ...state.household, list_items: newHouseholdLIs }
       };
     case "SET_LOADING":
       return { ...state, loading: !state.loading };

@@ -6,7 +6,15 @@ import * as actions from "../actions";
 class ListItem extends React.Component {
   handleClick = event => {
     event.preventDefault();
-    this.props.completeListItem(this.props.item);
+    this.props.completeListItem(this.props.item).then(res => {
+      if (res.error) {
+        this.setState({ error: true }, console.log(res.error));
+      } else {
+        console.log("marked an item as completed");
+        // this.props.forceRender();
+      }
+      this.props.forceRender();
+    });
   };
 
   render() {
