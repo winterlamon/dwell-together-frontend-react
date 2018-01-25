@@ -117,6 +117,15 @@ export function authReducer(
         }
       };
     case "REMOVE_HOUSEHOLD_USER":
+      let newHouseholdMembers = [...state.household.members];
+
+      let foundMember = newHouseholdMembers.find(
+        member => member.id === action.user.id
+      );
+      let memberIndex = newHouseholdMembers.indexOf(foundMember);
+
+      // newHouseholdMembers = newHouseholdMembers.splice(memberIndex, 1);
+
       return {
         ...state,
         loading: !state.loading,
@@ -124,13 +133,8 @@ export function authReducer(
         household: {
           ...action.user.household,
           members: [
-            ...action.user.household.members.slice(
-              0,
-              action.user.household.members.indexOf(action.user)
-            ),
-            ...action.user.household.members.slice(
-              action.user.household.members.indexOf(action.user) + 1
-            )
+            ...newHouseholdMembers.slice(0, memberIndex),
+            newHouseholdMembers.slice(memberIndex + 1)
           ]
         }
       };

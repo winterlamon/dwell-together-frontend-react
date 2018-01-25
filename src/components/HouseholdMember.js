@@ -7,7 +7,9 @@ import * as actions from "../actions";
 class HouseholdMember extends React.Component {
   handleClick = event => {
     event.preventDefault();
-    this.props.removeUserFromHousehold(this.props.member);
+    this.props
+      .removeUserFromHousehold(this.props.member)
+      .then(this.props.forceRender());
   };
 
   render() {

@@ -50,7 +50,7 @@ input {
   border-radius: 5px;
   color: #ffffff;
   font-size: 16px;
-  height: auto;
+  /* height: auto; */
   text-align: center;
   text-transform: uppercase;
 }
@@ -333,7 +333,7 @@ input {
 
 .profile-avatar {
   height: 12rem;
-  /* padding-right: 4rem; */
+  border-radius: 50%;
 }
 
 .profile-avatar-column {

@@ -11,7 +11,6 @@ class ListItem extends React.Component {
         this.setState({ error: true }, console.log(res.error));
       } else {
         console.log("marked an item as completed");
-        // this.props.forceRender();
       }
       this.props.forceRender();
     });
@@ -27,16 +26,9 @@ class ListItem extends React.Component {
         <td>{item.due_date}</td>
         <td>
           {item.completed ? (
-            <p
-              className="green darken-1 button"
-              // key={"item-button-" + item.id}
-              onClick={this.handleClick}
-              //   () => {
-              //   api.listItems.completeListItem(item);
-              //   //   props.refreshCurrentUser();
-              // }
-            >
-              <Icon>done</Icon> COMPLETED
+            <p className="green darken-1 button" onClick={this.handleClick}>
+              {/* <Icon>done</Icon>  */}
+              COMPLETED
             </p>
           ) : (
             <Button

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Col, Row } from "react-materialize";
+import { Button, Col, Icon, Row } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import swal from "sweetalert";
@@ -127,7 +127,8 @@ class Profile extends Component {
                     this.setState({ toggle: true });
                   }}
                 >
-                  Edit Description
+                  {/* <Icon>create</Icon> */}
+                  Edit
                 </Button>
               )}
             </div>
