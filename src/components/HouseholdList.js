@@ -29,7 +29,7 @@ const HouseholdList = props => {
         </p>
         <div>
           <Button
-            className="list-remove-button"
+            className="list-button"
             key={"list-button-" + list.id}
             onClick={() => {
               props.deleteList(list);

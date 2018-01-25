@@ -59,7 +59,7 @@ class NewListForm extends Component {
                   onChange={this.handleChange}
                 />
               </label>
-              <label>
+              {/* <label>
                 Category
                 <input
                   type="text"
@@ -68,8 +68,27 @@ class NewListForm extends Component {
                   value={this.state.list.category}
                   onChange={this.handleChange}
                 />
-              </label>
+              </label> */}
+              <div>
+                <label>
+                  Category
+                  <select
+                    name="category"
+                    onChange={this.handleChange}
+                    class="browser-default"
+                  >
+                    {/* <option disabled selected>
+                      Select a Category
+                    </option> */}
+                    <option value="Tasks">Tasks</option>
+                    <option value="Events">Events</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Financial">Financial</option>
+                  </select>
+                </label>
+              </div>
             </form>
+            <Row />
             <Button className="button" onClick={this.handleButtonClick}>
               Create List
             </Button>

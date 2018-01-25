@@ -119,6 +119,10 @@ thead {
   padding-right: 3rem;
 }
 
+.list-button {
+  align-items: right;
+}
+
 .member {
   border-color: #e0e0e0;
   /* border-bottom: #e0e0e0; */
@@ -316,4 +320,41 @@ thead {
 .profile-items {
   padding-left: 4rem;
   padding-right: 4rem;
+}
+
+/* ==== sweet alert ==== */
+
+.swal-overlay {
+  background-color: rgba(43, 165, 137, 0.45);
+}
+
+.swal-modal {
+  background-color: rgba(63, 255, 106, 0.69);
+  border: 3px solid white;
+}
+
+.swal-title {
+  margin: 0px;
+  font-size: 16px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+  margin-bottom: 28px;
+}
+
+.swal-text {
+  background-color: #fefae3;
+  padding: 17px;
+  border: 1px solid #f0e1a1;
+  display: block;
+  margin: 22px;
+  text-align: center;
+  color: #61534e;
+}
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #4962b3;
+  font-size: 12px;
+  border: 1px solid #3e549a;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
