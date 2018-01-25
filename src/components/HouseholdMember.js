@@ -24,7 +24,7 @@ class HouseholdMember extends React.Component {
           <Col s={4}>
             <div className="member-button">
               <Button
-                className="member-remove-button"
+                className="remove-button"
                 key={"member-button-" + member.id}
                 onClick={this.handleClick}
               >
