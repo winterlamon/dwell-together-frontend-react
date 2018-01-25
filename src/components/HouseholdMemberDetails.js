@@ -30,11 +30,13 @@ class HouseholdMemberDetails extends React.Component {
           </Col>
           <Col s={9} className="member-details">
             <div>
-              <Link to={`/profile/${member.username}`}>
-                <h1 onClick={this.handleMemberClick}>
-                  {member.first_name + " " + member.last_name}
-                </h1>
-              </Link>
+              {/* <Link to={`/profile/${member.username}`}> */}
+              <h1
+              // onClick={this.handleMemberClick}
+              >
+                {member.first_name + " " + member.last_name}
+              </h1>
+              {/* </Link> */}
               <h3>{member.username}</h3>
               <p>{member.description}</p>
             </div>
