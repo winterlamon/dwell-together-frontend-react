@@ -20,8 +20,23 @@ const ProfileListItemContainer = props => {
         <div>
           <h3>Your Items</h3>
         </div>
-        <div className="search">Search Bar / Filter Goes Here</div>
+        <div className="search" />
         <div>
+          {/* {this.props.currentUser.lists.count === 0 ? (
+            <p>There are no lists to display.</p>
+          ) : (
+            <table className="list-items-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Due Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>{allUserListItems}</tbody>
+            </table>
+          )} */}
           <table className="list-items-table">
             <thead>
               <tr>

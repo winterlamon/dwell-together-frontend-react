@@ -3,11 +3,13 @@ import { Button, Col, Row } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import swal from "sweetalert";
+// import { CopyToClipboard } from "react-copy-to-clipboard";
 
 class CreateHousehold extends Component {
   state = {
     error: false,
-    nickname: ""
+    nickname: "",
+    copied: false
   };
 
   handleChange = event => {
@@ -34,8 +36,6 @@ class CreateHousehold extends Component {
   };
 
   render() {
-    console.log("state in create household", this.state);
-
     return (
       <div>
         <Row>
