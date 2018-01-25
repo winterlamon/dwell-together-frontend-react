@@ -55,6 +55,7 @@ class NewListForm extends Component {
                   type="text"
                   name="name"
                   id="listName"
+                  className="center"
                   value={this.state.list.name}
                   onChange={this.handleChange}
                 />
@@ -75,15 +76,20 @@ class NewListForm extends Component {
                   <select
                     name="category"
                     onChange={this.handleChange}
-                    class="browser-default"
+                    class="browser-default center"
                   >
-                    {/* <option disabled selected>
-                      Select a Category
-                    </option> */}
-                    <option value="Tasks">Tasks</option>
-                    <option value="Events">Events</option>
-                    <option value="Shopping">Shopping</option>
-                    <option value="Financial">Financial</option>
+                    <option value="Tasks" className="center">
+                      Tasks
+                    </option>
+                    <option value="Events" className="center">
+                      Events
+                    </option>
+                    <option value="Shopping" className="center">
+                      Shopping
+                    </option>
+                    <option value="Financial" className="center">
+                      Financial
+                    </option>
                   </select>
                 </label>
               </div>

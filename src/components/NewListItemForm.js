@@ -2,18 +2,17 @@ import React, { Component } from "react";
 import { Button, Col, Row } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import api from "../services/api";
 
 class NewListItemForm extends Component {
   state = {
     error: false,
     list_item: {
-      household: this.props.currentUser.household,
+      household: this.props.household,
       name: "",
       description: "",
       due_date: "",
-      user_id: this.props.currentUser.id,
-      list_id: 1,
+      user_id: "",
+      list_id: "",
       completed: false
     }
   };
@@ -28,7 +27,7 @@ class NewListItemForm extends Component {
 
   handleButtonClick = event => {
     event.preventDefault();
-    api.list_items
+    this.props
       .createListItem(
         this.state.list_item.name,
         this.state.list_item.description,
@@ -41,20 +40,33 @@ class NewListItemForm extends Component {
         if (res.error) {
           this.setState({ error: true }, console.log(res.error));
         } else {
-          this.props.refreshCurrentUser();
+          this.setState({
+            ...this.state,
+            list_item: {
+              household: this.props.household,
+              name: "",
+              description: "",
+              due_date: "",
+              user_id: "",
+              list_id: "",
+              completed: false
+            }
+          });
+          this.props.forceRender();
         }
       });
-    // this.setState({
-    //   list_item: {
-    //     household: this.props.currentUser.household,
-    //     name: "",
-    //     category: ""
-    //   }
-    // });
   };
 
   render() {
-    console.log("new list item form currentUser", this.props.currentUser);
+    const memberSelect = this.props.household.members.map(member => (
+      <option value={member.id}>
+        {member.first_name + " " + member.last_name}
+      </option>
+    ));
+    const listSelect = this.props.household.lists.map(list => (
+      <option value={list.id}>{list.name}</option>
+    ));
+
     return (
       <div className="new-list-item">
         <Col s={12} className="form">
@@ -67,6 +79,7 @@ class NewListItemForm extends Component {
                   type="text"
                   name="name"
                   id="listItemName"
+                  className="center"
                   value={this.state.list_item.name}
                   onChange={this.handleChange}
                 />
@@ -77,6 +90,7 @@ class NewListItemForm extends Component {
                   type="text"
                   name="description"
                   id="listItemDescription"
+                  className="center"
                   value={this.state.list_item.description}
                   onChange={this.handleChange}
                 />
@@ -84,34 +98,66 @@ class NewListItemForm extends Component {
               <label>
                 Due Date
                 <input
-                  type="text"
+                  type="date"
                   name="due_date"
                   id="listItemDueDate"
+                  // placeholder="YYYY-MM-DD"
+                  className="center"
                   value={this.state.list_item.due_date}
                   onChange={this.handleChange}
                 />
               </label>
-              <label>
+              {/* <label>
                 Assigned User
                 <input
                   type="text"
                   name="user_id"
                   id="listItemUserID"
+                  className="center"
+
                   value={this.state.list_item.user_id}
                   onChange={this.handleChange}
                 />
-              </label>
-              <label>
+              </label> */}
+              <div>
+                <label>
+                  Assigned Member
+                  <select
+                    name="user_id"
+                    onChange={this.handleChange}
+                    class="browser-default center"
+                  >
+                    {memberSelect}
+                  </select>
+                </label>
+              </div>
+              {/* <label>
                 Add to:
                 <input
                   type="text"
                   name="list_id"
                   id="listItemListID"
+                  className="center"
+
                   value={this.state.list_item.list_id}
                   onChange={this.handleChange}
                 />
-              </label>
+              </label> */}
+              <div>
+                <label>
+                  Add to:
+                  <select
+                    name="list_id"
+                    onChange={this.handleChange}
+                    class="browser-default center"
+                  >
+                    {listSelect}
+                  </select>
+                </label>
+              </div>
             </form>
+            <Row />
+
             <Button className="button" onClick={this.handleButtonClick}>
               Create List Item
             </Button>
