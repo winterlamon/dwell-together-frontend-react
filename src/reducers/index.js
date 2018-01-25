@@ -38,7 +38,6 @@ export function authReducer(
 ) {
   switch (action.type) {
     case "SET_CURRENT_USER":
-      debugger;
       return {
         ...state,
         currentUser: action.user,
@@ -121,6 +120,7 @@ export function authReducer(
       return {
         ...state,
         loading: !state.loading,
+        users: state.users,
         household: {
           ...action.user.household,
           members: [
