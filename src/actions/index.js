@@ -243,7 +243,9 @@ export function deleteList(list) {
       method: "DELETE",
       headers: headers,
       body: JSON.stringify(list)
-    }).then(lists => dispatch({ type: "DELETE_LIST", lists }));
+    })
+      .then(res => res.json())
+      .then(lists => dispatch({ type: "DELETE_LIST", lists }));
   };
 }
 

@@ -75,10 +75,11 @@ export function authReducer(
     case "SET_CURRENT_USER":
       return {
         ...state,
-        currentUser: action.user
-        // household: {
-        //   ...action.currentUser.household,
-        //   household_key: action.currentUser.household.household_key
+        currentUser: action.user,
+        household: {
+          ...action.user.household,
+          household_key: hashids.encode(action.user.household.id)
+        }
       };
     case "CREATE_USER":
       return {
@@ -179,9 +180,6 @@ export function authReducer(
     case "UPDATE_LIST":
       return { ...state, loading: !state.loading };
     case "DELETE_LIST":
-      const householdLists = action.lists.filter(
-        list => list.household_id === state.household.id
-      );
       return {
         ...state,
         loading: !state.loading,
@@ -193,7 +191,7 @@ export function authReducer(
           //     1
           //   )
           // ]
-          lists: householdLists
+          lists: action.lists
         }
       };
     case "GET_ALL_LISTS":

@@ -29,6 +29,7 @@ class CreateHousehold extends Component {
         });
         // this.props.history.push("/dashboard");
       }
+      this.setState({ nickname: "" });
     });
   };
 

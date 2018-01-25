@@ -107,6 +107,10 @@ thead {
   border-bottom: #e0e0e0; */
   border-right: #e0e0e0;
   /* width: 100%; */
+
+  padding-left: 2rem;
+  padding-right: 4rem;
+  padding-top: 3rem;
 }
 
 .household-members-list {

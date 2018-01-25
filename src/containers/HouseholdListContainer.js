@@ -8,7 +8,7 @@ import NewListItemForm from "../components/NewListItemForm";
 
 const HouseholdListContainer = props => {
   const lists = props.household.lists;
-
+  console.log("props in list", props);
   const allHouseholdLists = lists.map(list => (
     <HouseholdList key={`household-list-` + list.id.toString()} list={list} />
   ));
@@ -27,7 +27,7 @@ const HouseholdListContainer = props => {
           </div>
         </Col>
         <Col s={4} className="household center">
-          <Row className="sections">
+          <Row>
             <div>
               <h3>{props.currentUser.household.nickname}</h3>
             </div>
