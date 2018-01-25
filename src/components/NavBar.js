@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import logo from "../dwell-logo-full.svg";
+import logo from "../dwell-logo-marker.svg";
 import { Button, Dropdown, Navbar, NavItem } from "react-materialize";
 import { connect } from "react-redux";
 import * as actions from "../actions";
