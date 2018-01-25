@@ -26,7 +26,10 @@ class ListItem extends React.Component {
         <td>{item.due_date}</td>
         <td>
           {item.completed ? (
-            <p className="green darken-1 button" onClick={this.handleClick}>
+            <p
+              className="green darken-1 white-text button"
+              onClick={this.handleClick}
+            >
               {/* <Icon>done</Icon>  */}
               COMPLETED
             </p>

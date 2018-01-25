@@ -177,6 +177,10 @@ export function authReducer(
       return {
         ...state,
         loading: !state.loading,
+        currentUser: {
+          ...state.currentUser,
+          list_items: [...state.currentUser.list_items, action.list_item]
+        },
         household: {
           ...state.household,
           list_items: [...state.household.list_items, action.list_item]

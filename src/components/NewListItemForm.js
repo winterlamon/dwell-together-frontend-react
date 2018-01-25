@@ -127,6 +127,9 @@ class NewListItemForm extends Component {
                     onChange={this.handleChange}
                     class="browser-default center"
                   >
+                    <option value="" disabled selected>
+                      Select a member
+                    </option>
                     {memberSelect}
                   </select>
                 </label>
@@ -151,6 +154,9 @@ class NewListItemForm extends Component {
                     onChange={this.handleChange}
                     class="browser-default center"
                   >
+                    <option value="" disabled selected>
+                      Select a list
+                    </option>
                     {listSelect}
                   </select>
                 </label>

@@ -80,14 +80,15 @@ export function signup({
         email,
         password
       })
-    }).then(res => console.log(res));
-    // .then(user => {
-    //   localStorage.setItem("token", user.token);
-    //   dispatch({ type: "CREATE_USER", user });
-    //   dispatch({ type: "SET_CURRENT_USER", user });
-    //   // dispatch({ type: "SET_HOUSEHOLD", user });
-    //   return user;
-    // });
+    })
+      .then(res => res.json())
+      .then(user => {
+        localStorage.setItem("token", user.token);
+        dispatch({ type: "CREATE_USER", user });
+        dispatch({ type: "SET_CURRENT_USER", user });
+        // dispatch({ type: "SET_HOUSEHOLD", user });
+        return user;
+      });
   };
 }
 
