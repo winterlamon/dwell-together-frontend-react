@@ -1,40 +1,5 @@
 import { hashids } from "../actions";
 
-// state = {
-//   auth: {
-//     currentUser: {
-//       id: null,
-//       first_name: null,
-//       last_name: null,
-//       username: null,
-//       email: null,
-//       description: null,
-//       avatar_url: null,
-//       list_items: [],
-//       token: null
-//     }
-//   },
-//   household: {
-//     id: null,
-//     nickname: null,
-//     lists: [],
-//     list_items: [],
-//     members: []
-//   },
-//   users: [],
-//   list_categories: [],
-//   selectedUser: {
-//     id: null,
-//     first_name: null,
-//     last_name: null,
-//     username: null,
-//     email: null,
-//     description: null,
-//     avatar_url: null,
-//     list_items: []
-//   }
-// };
-
 export function authReducer(
   state = {
     loading: true,
@@ -73,6 +38,7 @@ export function authReducer(
 ) {
   switch (action.type) {
     case "SET_CURRENT_USER":
+      debugger;
       return {
         ...state,
         currentUser: action.user,
@@ -213,7 +179,31 @@ export function authReducer(
         }
       };
     case "UPDATE_LIST_ITEM":
-      return { ...state, loading: !state.loading };
+      //USER
+      let newListItems = state.currentUser.list_items.slice();
+
+      let foundCurrentUser = newListItems.find(
+        li => li.id === action.list_item.id
+      );
+      let indexCurrentUser = newListItems.indexOf(foundCurrentUser);
+
+      newListItems[indexCurrentUser] = action.list_item;
+      //HOUSEHOLD
+      let newHouseholdLIs = [...state.household.list_items];
+
+      let foundHousehold = newHouseholdLIs.find(
+        li => li.id === action.list_item.id
+      );
+      let indexHousehold = newHouseholdLIs.indexOf(foundHousehold);
+
+      newHouseholdLIs[indexHousehold] = action.list_item;
+
+      return {
+        ...state,
+        loading: !state.loading,
+        currentUser: { ...state.currentUser, list_items: newListItems },
+        household: { ...state.household, list_items: newHouseholdLIs }
+      };
     case "SET_LOADING":
       return { ...state, loading: !state.loading };
     default:

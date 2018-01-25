@@ -12,15 +12,10 @@ class HouseholdListContainer extends React.Component {
   };
 
   handleChange = event => {
-    // const newFilter = {
-    //   ...this.state,
-    //   [event.target.name]: event.target.value
-    // };
     this.setState({ filter: event.target.value });
   };
 
   render() {
-    console.log("lists to filter", this.props.household.lists);
     const lists = this.props.household.lists;
     const filteredLists =
       this.state.filter === "All Categories"

@@ -4,8 +4,17 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 
 class ListItem extends React.Component {
-  handleClick = () => {
-    this.props.completeListItem(this.props.item);
+  handleClick = event => {
+    event.preventDefault();
+    this.props.completeListItem(this.props.item).then(res => {
+      if (res.error) {
+        this.setState({ error: true }, console.log(res.error));
+      } else {
+        console.log("marked an item as completed");
+        // this.props.forceRender();
+      }
+      this.props.forceRender();
+    });
   };
 
   render() {
@@ -19,7 +28,7 @@ class ListItem extends React.Component {
         <td>
           {item.completed ? (
             <p
-              className="green darken-1"
+              className="green darken-1 button"
               // key={"item-button-" + item.id}
               onClick={this.handleClick}
               //   () => {
@@ -33,10 +42,7 @@ class ListItem extends React.Component {
             <Button
               className="button"
               key={"item-button-" + item.id}
-              // onClick={() => {
-              //   api.items.deleteList(item);
-              //   props.refreshCurrentUser();
-              // }}
+              onClick={this.handleClick}
             >
               MARK AS COMPLETED
             </Button>
