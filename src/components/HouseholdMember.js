@@ -1,36 +1,45 @@
-import React from 'react';
-import { Button, Card, Col, Row} from 'react-materialize';
-
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button, Col, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class HouseholdMember extends React.Component {
+  handleClick = event => {
+    event.preventDefault();
+    this.props.removeUserFromHousehold(this.props.member);
+  };
 
-  handleClick = (event) => {
-    event.preventDefault()
+  render() {
+    const member = this.props.member;
+
+    return (
+      <div className="household-member">
+        <Row>
+          <Col s={8}>
+            <Link to={`/profile/${member.username}`}>
+              <h5>{member.first_name + " " + member.last_name}</h5>
+            </Link>
+          </Col>
+          <Col s={4}>
+            <div className="member-button">
+              <Button
+                className="member-remove-button"
+                key={"member-button-" + member.id}
+                onClick={this.handleClick}
+              >
+                Remove
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    );
   }
-
-    render() {
-
-      const member = this.props.member
-
-      return (
-        <div className="dashboard">
-          <Row>
-            <Card
-              className="card"
-              title={member.first_name + member.last_name}
-              actions={[<Button
-                            key={"venue-button-" + member.id}
-                            onClick={this.handleClick}>
-                            Remove
-                          </Button>
-                      ]}>
-                    </Card>
-          </Row>
-
-        </div>
-      )
-    }
 }
 
-
-export default HouseholdMember;
+export default connect(state => {
+  return {
+    ...state.authReducer
+  };
+}, actions)(HouseholdMember);

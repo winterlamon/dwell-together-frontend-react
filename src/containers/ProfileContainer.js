@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
-import { Button, Col, Input, Row} from 'react-materialize';
+import React from "react";
+import { Row } from "react-materialize";
+import { connect } from "react-redux";
+import ProfileListItemContainer from "../containers/ProfileListItemContainer";
+import UserProfileInfo from "../components/UserProfileInfo";
+import * as actions from "../actions";
 
+class Profile extends React.Component {
+  componentDidMount() {
+    this.props.getUserData(this.props.match.params);
+  }
 
-class Profile extends Component {
   render() {
     return (
-      <div className="dashboard">
-        <div>
-          <h1>Winter LaMon</h1>
-        </div>
-        <div className="col-md-8">
-        </div>
-        <div>  
-        </div>
+      <div className="profile">
+        <Row>
+          <UserProfileInfo />
+        </Row>
+        <Row>
+          <ProfileListItemContainer />
+        </Row>
       </div>
     );
   }
 }
 
-export default Profile;
+export default connect(state => {
+  return {
+    ...state.authReducer
+  };
+}, actions)(Profile);

@@ -1,77 +1,142 @@
-import React, { Component } from 'react';
-import { Button, Col, Row} from 'react-materialize';
-import api from '../services/api'
-
+import React, { Component } from "react";
+import { Button, Col, Row } from "react-materialize";
+import { connect } from "react-redux";
+import * as actions from "../actions";
+import swal from "sweetalert";
 
 class Signup extends Component {
   state = {
     error: false,
     fields: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: ''
+      first_name: "",
+      last_name: "",
+      username: "",
+      household_key: "",
+      email: "",
+      password: ""
     }
-  }
+  };
 
   handleChange = event => {
-    const newField = {...this.state.fields, [event.target.name]: event.target.value}
-    this.setState({ fields: newField })
-  }
+    const newField = {
+      ...this.state.fields,
+      [event.target.name]: event.target.value
+    };
+    this.setState({ fields: newField });
+  };
 
-
-  handleButtonClick = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
-    api.auth.signup(this.state.fields.firstName, this.state.fields.lastName, this.state.fields.email, this.state.fields.password)
-      .then(res => {
-        if (res.error) {
-          this.setState({ error: true }, console.log(res.error));
-        } else {
-          this.props.handleSignup(res);
-          this.props.history.push('/dashboard');
-        }
-      });
-  }
+    this.props.signup(this.state.fields).then(res => {
+      if (res.error) {
+        this.setState({ error: true }, swal(res.error));
+      } else {
+        // this.props.history.push(`/profile/${res.username}`);
+        // this.props.history.push(`/login`);
+        console.log("account created and signed in");
+      }
+    });
+  };
 
   render() {
-    console.log(this.state)
     return (
-      <div className="signup" >
+      <div>
         <Row>
-          <Col s={3}></Col>
-          <Col s={6} className="signup-form">
+          <Col s={12} className="signup-form">
             <div className="container">
               <h3>Create an Account</h3>
               <form>
-                <label>
-                  First Name
-                  <input type="text" name="firstName" id="firstName" onChange={this.handleChange} />
-                </label>
-                <label>
-                  Last Name
-                <input type="text" name="lastName" id="lastName" onChange={this.handleChange} />
-                </label>
-                <label>
-                  Email
-                <input type="email" name="email" id="email" onChange={this.handleChange} />
-                </label>
-                <label>
-                  Password
-                <input type="password" name="password" id="password" onChange={this.handleChange} />
-              </label>
-            </form>
-              <Button
-                className="button"
-                onClick={this.handleButtonClick}
-                >Create Account</Button>
-            <Row></Row>
-        </div>
-            </Col>
-          <Col s={3}></Col>
+                <Row>
+                  <Col s={6}>
+                    <label>
+                      First Name
+                      <input
+                        s={6}
+                        type="text"
+                        name="first_name"
+                        id="first_name"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                  <Col s={6}>
+                    <label>
+                      Last Name
+                      <input
+                        s={6}
+                        type="text"
+                        name="last_name"
+                        id="last_name"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col s={6}>
+                    <label>
+                      Username
+                      <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                  <Col s={6}>
+                    <label>
+                      Household Key
+                      <input
+                        type="text"
+                        name="household_key"
+                        id="household_key"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col s={6}>
+                    <label>
+                      Email
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                  <Col s={6}>
+                    <label>
+                      Password
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        onChange={this.handleChange}
+                      />
+                    </label>
+                  </Col>
+                </Row>
+              </form>
+              <Button className="button" onClick={this.handleSubmit}>
+                Create Account
+              </Button>
+              <Row />
+            </div>
+          </Col>
         </Row>
       </div>
     );
   }
 }
 
-export default Signup;
+export default connect(state => {
+  return {
+    ...state.authReducer
+  };
+}, actions)(Signup);
