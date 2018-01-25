@@ -262,7 +262,14 @@ export function getLists(household) {
 
 // ==== LIST ITEMS ==== //
 
-export function createListItem(name, description, due_date, user, list) {
+export function createListItem(
+  name,
+  description,
+  due_date,
+  user_id,
+  list_id,
+  completed
+) {
   return dispatch => {
     dispatch({ type: "SET_LOADING" });
     dispatch({ type: "ASYNC_START" });
@@ -274,9 +281,9 @@ export function createListItem(name, description, due_date, user, list) {
         name,
         description,
         due_date,
-        user_id: user.id,
-        list_id: list.id,
-        completed: false
+        user_id,
+        list_id,
+        completed
       })
     })
       .then(res => res.json())
