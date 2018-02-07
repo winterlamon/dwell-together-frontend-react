@@ -78,6 +78,9 @@ class NewListForm extends Component {
                     onChange={this.handleChange}
                     class="browser-default center"
                   >
+                    <option value="" disabled selected>
+                      Select a category
+                    </option>
                     <option value="Tasks" className="center">
                       Tasks
                     </option>

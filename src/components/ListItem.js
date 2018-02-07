@@ -11,7 +11,6 @@ class ListItem extends React.Component {
         this.setState({ error: true }, console.log(res.error));
       } else {
         console.log("marked an item as completed");
-        // this.props.forceRender();
       }
       this.props.forceRender();
     });
@@ -28,15 +27,11 @@ class ListItem extends React.Component {
         <td>
           {item.completed ? (
             <p
-              className="green darken-1 button"
-              // key={"item-button-" + item.id}
+              className="green darken-1 white-text button"
               onClick={this.handleClick}
-              //   () => {
-              //   api.listItems.completeListItem(item);
-              //   //   props.refreshCurrentUser();
-              // }
             >
-              <Icon>done</Icon> COMPLETED
+              {/* <Icon>done</Icon>  */}
+              COMPLETED
             </p>
           ) : (
             <Button
