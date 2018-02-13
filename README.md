@@ -1,4 +1,4 @@
-<!-- <h1 align=center><img src="/src/assets/logos/dwell-together-logo-full.png" alt="D'well Together logo" /></h1> -->
+<h1 align=center><img src="/src/assets/dwell-logo-marker.svg" alt="D'well Together logo" /></h1>
 
 D'well Together is a web-based organizational system for communal living situations that makes it easier for roommates to do well together. Whether it's making a chore list or paying bills, D'well Together keeps everything transparent and hassle-free.. The front end for D'well Together is made with React & Redux and works with API in dwell-together-api (repository linked).
 
