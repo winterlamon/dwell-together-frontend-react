@@ -29,19 +29,23 @@ With this app, a user can:
 * create, view, and delete household lists
 * add items to a list, assign them to members in a household, and mark them as completed
 
-<!-- <p align=center><img src="/src/assets/screenshots/dwell-together-home.png" alt="D'well Together home page" /></p>
+<p align=center><img src="/src/assets/screenshots/dwell-home.png" alt="D'well Together home page" /></p>
 
-<p align=center><img src="/src/assets/screenshots/dwell-together-signup.png" alt="D'well Together signup page" /></p>
+<!-- <p align=center><img src="/src/assets/screenshots/dwell-signup.png" alt="D'well Together signup page" /></p> -->
 
-<p align=center><img src="/src/assets/screenshots/dwell-together-login.png" alt="D'well Together login page" /></p>
+<p align=center><img src="/src/assets/screenshots/dwell-create-household.png" alt="D'well Together household creation view" /></p>
 
-<p align=center><img src="/src/assets/screenshots/dwell-together-profile.png" alt="D'well Together dashboard" /></p>
+<p align=center><img src="/src/assets/screenshots/dwell-household-key.png" alt="D'well Together household reference key displays after household creation" /></p>
 
-<p align=center><img src="/src/assets/screenshots/dwell-together-members.png" alt="D'well Together dashboard displayed with search results" /></p>
+<p align=center><img src="/src/assets/screenshots/dwell-login.png" alt="D'well Together login page" /></p>
 
-<p align=center><img src="/src/assets/screenshots/dwell-together-lists.png" alt="D'well Together profile with list of user's saved venues" /></p>
+<p align=center><img src="/src/assets/screenshots/dwell-profile-start.png" alt="D'well Together profile page view upon account creation" /></p>
 
-<p align=center><img src="/src/assets/screenshots/dwell-together-visited-venue.png" alt="D'well Together list of user's saved venues with venue saved" /></p> -->
+<!-- <p align=center><img src="/src/assets/screenshots/dwell-members.png" alt="D'well Together dashboard displayed with search results" /></p>
+
+<p align=center><img src="/src/assets/screenshots/dwell-lists.png" alt="D'well Together profile with list of user's saved venues" /></p>
+
+<p align=center><img src="/src/assets/screenshots/dwell-visited-venue.png" alt="D'well Together list of user's saved venues with venue saved" /></p> -->
 
 ## Contributing
 
