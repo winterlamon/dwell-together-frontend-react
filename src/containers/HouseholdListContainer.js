@@ -64,7 +64,7 @@ class HouseholdListContainer extends React.Component {
               </form>
             </div>
             <div>
-              {this.props.household.lists.count === 0 ? (
+              {this.props.household.lists.length === 0 ? (
                 <p>There are no lists to display.</p>
               ) : (
                 allHouseholdLists

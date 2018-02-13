@@ -44,9 +44,9 @@ thead {
   background-color: rgba(127, 205, 240, 0.2);
 }
 
-input {
+input:active {
   /* color: #0d47a1 !default; */
-  border-bottom: 1px solid #26a69a;
+  border-bottom: 1px solid #0d47a1;
 }
 
 .button {
@@ -57,6 +57,10 @@ input {
   /* height: auto; */
   text-align: center;
   text-transform: uppercase;
+}
+
+.button:hover {
+  background: #0d47a1;
 }
 
 .browser-default {
@@ -87,6 +91,7 @@ input {
 
 .list-card {
   /* min-height: 20rem; */
+  background-color: rgba(127, 205, 240, 0.2);
 }
 
 .section {
@@ -114,6 +119,19 @@ input {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
+}
+
+.household-list-div {
+  padding: 2rem;
+  border-radius: 1rem;
+  border-color: #999999;
+  border-style: solid;
+  background-color: #ffffff;
+}
+
+.list {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 }
 
 .household-lists {
@@ -173,6 +191,10 @@ input {
   height: auto;
   text-align: center;
   text-transform: uppercase;
+}
+
+.remove-button:hover {
+  background-color: #b71c1c;
 }
 
 /* ===== landing page ===== */

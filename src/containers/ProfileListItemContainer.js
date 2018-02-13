@@ -26,22 +26,23 @@ class ProfileListItemContainer extends React.Component {
           </div>
           <div className="search" />
           <div>
-            {/* {this.this.props.currentUser.lists.count === 0 ? (
-              <p>There are no lists to display.</p>
+            {this.props.currentUser.list_items.length === 0 ? (
+              <p>There are currently no items to display.</p>
             ) : (
-              <table className="list-items-table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>{allUserListItems}</tbody>
-              </table>
-            )} */}
-            <table className="list-items-table">
+              // <table className="list-items-table">
+              //   <thead>
+              //     <tr>
+              //       <th>Title</th>
+              //       <th>Description</th>
+              //       <th>Due Date</th>
+              //       <th>Status</th>
+              //     </tr>
+              //   </thead>
+              //   <tbody>{this.allUserListItems()}</tbody>
+              // </table>
+              this.allUserListItems()
+            )}
+            {/* <table className="list-items-table">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -51,7 +52,7 @@ class ProfileListItemContainer extends React.Component {
                 </tr>
               </thead>
               <tbody>{this.allUserListItems()}</tbody>
-            </table>
+            </table> */}
           </div>
         </Row>
       </div>
