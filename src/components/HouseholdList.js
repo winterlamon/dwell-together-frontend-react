@@ -14,13 +14,20 @@ class HouseholdList extends React.Component {
     const listItems = this.props.household.list_items.filter(
       list_item => list_item.list_id === list.id
     );
-    const showListItems = listItems.map((item, index) => (
-      <ListItem
-        key={`list-item-` + item.id.toString()}
-        item={item}
-        index={index}
-      />
-    ));
+    const showListItems =
+      listItems.length === 0 ? (
+        <div className="center">
+          <p>There are no list items to display.</p>
+        </div>
+      ) : (
+        listItems.map((item, index) => (
+          <ListItem
+            key={`list-item-` + item.id.toString()}
+            item={item}
+            index={index}
+          />
+        ))
+      );
 
     return (
       <div className="list">

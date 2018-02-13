@@ -49,6 +49,10 @@ input:active {
   border-bottom: 1px solid #0d47a1;
 }
 
+.nav-link {
+  color: #0d47a1;
+}
+
 .button {
   background: #000000;
   border-radius: 5px;
@@ -60,6 +64,10 @@ input:active {
 }
 
 .button:hover {
+  background: #0d47a1;
+}
+
+.button::after {
   background: #0d47a1;
 }
 
@@ -153,8 +161,8 @@ input:active {
 
 .household-members-list {
   padding-bottom: 2rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .list-button {

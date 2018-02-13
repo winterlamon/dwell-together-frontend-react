@@ -18,12 +18,12 @@ class HouseholdMember extends React.Component {
     return (
       <div className="household-member">
         <Row>
-          <Col s={8}>
-            <Link to={`/profile/${member.username}`}>
-              <h5>{member.first_name + " " + member.last_name}</h5>
-            </Link>
+          <Col l={7} s={12}>
+            {/* <Link to={`/profile/${member.username}`}> */}
+            <h5>{member.first_name + " " + member.last_name}</h5>
+            {/* </Link> */}
           </Col>
-          <Col s={4}>
+          <Col l={5} s={12}>
             <div className="member-button">
               <Button
                 className="remove-button"
