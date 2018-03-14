@@ -32,7 +32,7 @@ class Signup extends Component {
         this.setState({ error: true }, swal(res.error));
       } else {
         // this.props.history.push(`/profile/${res.username}`);
-        // this.props.history.push(`/login`);
+        this.props.history.push(`/login`);
         console.log("account created and signed in");
       }
     });
