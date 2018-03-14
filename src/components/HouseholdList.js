@@ -14,29 +14,38 @@ class HouseholdList extends React.Component {
     const listItems = this.props.household.list_items.filter(
       list_item => list_item.list_id === list.id
     );
-    const showListItems = listItems.map((item, index) => (
-      <ListItem
-        key={`list-item-` + item.id.toString()}
-        item={item}
-        index={index}
-      />
-    ));
+    const showListItems =
+      listItems.length === 0 ? (
+        <div className="center">
+          <p>There are no list items to display.</p>
+        </div>
+      ) : (
+        listItems.map((item, index) => (
+          <ListItem
+            key={`list-item-` + item.id.toString()}
+            item={item}
+            index={index}
+          />
+        ))
+      );
 
     return (
       <div className="list">
-        <Card
-          className="list-card"
-          header={<CardTitle reveal waves="light" />}
-          title={`Name: ${list.name}`}
+        <div
+          className="household-list-div"
+          // header={<CardTitle reveal waves="light" />}
+          title=" "
           // reveal={}
         >
+          <h3>{list.name}</h3>
           <p>
             <strong>Category:</strong> {list.category}
           </p>
-          <div>
+          <div className="center">
             <Row />
-            <Row>
-              <Col>
+            <Row className="center">
+              <Col l={3} s={12} />
+              <Col l={3} s={12}>
                 {this.state.showItems ? (
                   <Button
                     className="list-button button"
@@ -59,7 +68,7 @@ class HouseholdList extends React.Component {
                   </Button>
                 )}
               </Col>
-              <Col>
+              <Col l={3} s={12}>
                 <Button
                   className="list-button remove-button"
                   key={"list-button-" + list.id}
@@ -70,26 +79,11 @@ class HouseholdList extends React.Component {
                   Delete List
                 </Button>
               </Col>
+              <Col l={3} s={12} />
             </Row>
           </div>
-          <div>
-            {this.state.showItems ? (
-              <div>
-                <table className="list-items-table">
-                  <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Description</th>
-                      <th>Due Date</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>{showListItems}</tbody>
-                </table>
-              </div>
-            ) : null}
-          </div>
-        </Card>
+          <div>{this.state.showItems ? showListItems : null}</div>
+        </div>
       </div>
     );
   }

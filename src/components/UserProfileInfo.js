@@ -28,7 +28,6 @@ class Profile extends Component {
         if (res.error) {
           this.setState({ error: true }, () => swal(res.error));
         } else {
-          console.log("currentUser after save changes", this.state.currentUser);
           this.props.forceRender();
         }
         this.props.forceRender();
@@ -63,61 +62,59 @@ class Profile extends Component {
               <p>{this.props.currentUser.description}</p>
 
               {this.state.toggle ? (
-                <div className="center">
-                  <Row className="center">
-                    <Col />
-                    <Col>
-                      <div className="form center">
-                        <form>
-                          <label>
-                            Avatar URL
-                            <input
-                              s={8}
-                              type="text"
-                              name="avatar_url"
-                              className="center"
-                              placeholder="http://www.website.com/image.png"
-                              label="avatar_url"
-                              value={this.state.avatar_url}
-                              onChange={this.handleChange}
-                            />
-                          </label>
-                          <label>
-                            Description
-                            <input
-                              type="text"
-                              name="description"
-                              className="center"
-                              label="description"
-                              placeholder="Enter your description here..."
-                              value={this.state.description}
-                              onChange={this.handleChange}
-                            />
-                          </label>
-                          <Row className="center">
-                            <Col>
-                              <Button
-                                className="button"
-                                onClick={this.handleSubmit}
-                              >
-                                Save Changes
-                              </Button>
-                            </Col>
-                            <Col>
-                              <Button
-                                className="button grey"
-                                onClick={() => {
-                                  this.setState({ toggle: false });
-                                }}
-                              >
-                                Cancel
-                              </Button>
-                            </Col>
-                          </Row>
-                        </form>
-                      </div>
-                    </Col>
-                    <Col />
+                <div className="center" style={{ width: "50%" }}>
+                  <Row className="center ">
+                    <div className="center form" style={{ padding: "2rem" }}>
+                      <form>
+                        <label>
+                          Avatar URL
+                          <input
+                            s={8}
+                            type="text"
+                            name="avatar_url"
+                            className="center"
+                            placeholder="http://www.website.com/image.png"
+                            label="avatar_url"
+                            value={this.state.avatar_url}
+                            onChange={this.handleChange}
+                          />
+                        </label>
+                        <label>
+                          Description
+                          <input
+                            type="text"
+                            name="description"
+                            className="center"
+                            label="description"
+                            placeholder="Enter your description here..."
+                            value={this.state.description}
+                            onChange={this.handleChange}
+                          />
+                        </label>
+                        <Row className="center">
+                          <Col l={3} s={12} />
+                          <Col>
+                            <Button
+                              className="button"
+                              onClick={this.handleSubmit}
+                            >
+                              Save
+                            </Button>
+                          </Col>
+                          <Col>
+                            <Button
+                              className="button grey"
+                              onClick={() => {
+                                this.setState({ toggle: false });
+                              }}
+                            >
+                              Cancel
+                            </Button>
+                          </Col>
+                          <Col l={3} s={12} />
+                        </Row>
+                      </form>
+                    </div>
                   </Row>
                 </div>
               ) : (

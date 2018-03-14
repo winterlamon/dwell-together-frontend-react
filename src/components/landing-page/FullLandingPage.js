@@ -15,7 +15,7 @@ const FullLandingPage = () => {
               D'well Together is the communal living organizer that makes it
               easier for roommates to do well together. Whether it's making a
               chore list or paying bills, D'well Together keeps everything
-              transparant and hassle-free.
+              transparent and hassle-free.
             </p>
           </Col>
           <Col s={3} />

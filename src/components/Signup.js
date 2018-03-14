@@ -32,7 +32,7 @@ class Signup extends Component {
         this.setState({ error: true }, swal(res.error));
       } else {
         // this.props.history.push(`/profile/${res.username}`);
-        // this.props.history.push(`/login`);
+        this.props.history.push(`/login`);
         console.log("account created and signed in");
       }
     });
@@ -55,6 +55,7 @@ class Signup extends Component {
                         type="text"
                         name="first_name"
                         id="first_name"
+                        className="center"
                         onChange={this.handleChange}
                       />
                     </label>
@@ -67,6 +68,7 @@ class Signup extends Component {
                         type="text"
                         name="last_name"
                         id="last_name"
+                        className="center"
                         onChange={this.handleChange}
                       />
                     </label>
@@ -81,6 +83,7 @@ class Signup extends Component {
                         type="text"
                         name="username"
                         id="username"
+                        className="center"
                         onChange={this.handleChange}
                       />
                     </label>
@@ -92,6 +95,7 @@ class Signup extends Component {
                         type="text"
                         name="household_key"
                         id="household_key"
+                        className="center"
                         onChange={this.handleChange}
                       />
                     </label>
@@ -106,6 +110,7 @@ class Signup extends Component {
                         type="email"
                         name="email"
                         id="email"
+                        className="center"
                         onChange={this.handleChange}
                       />
                     </label>
@@ -117,6 +122,7 @@ class Signup extends Component {
                         type="password"
                         name="password"
                         id="password"
+                        className="center"
                         onChange={this.handleChange}
                       />
                     </label>

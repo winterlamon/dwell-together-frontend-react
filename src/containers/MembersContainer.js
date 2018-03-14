@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 import HouseholdMemberListContainer from "./HouseholdMemberListContainer";
 import HouseholdMemberSidebarContainer from "./HouseholdMemberSidebarContainer";
-import NewHouseholdMemberForm from "../components/NewHouseholdMemberForm";
+// import NewHouseholdMemberForm from "../components/NewHouseholdMemberForm";
 import HouseholdKey from "../components/HouseholdKey";
 
 const MembersContainer = props => {
@@ -26,9 +26,9 @@ const MembersContainer = props => {
             <Row>
               <HouseholdKey />
             </Row>
-            <Row>
+            {/* <Row>
               <NewHouseholdMemberForm />
-            </Row>
+            </Row> */}
             <Row>
               <HouseholdMemberSidebarContainer />
             </Row>

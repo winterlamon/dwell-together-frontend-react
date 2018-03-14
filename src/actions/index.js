@@ -1,4 +1,4 @@
-const baseURL = `http://localhost:3001`;
+const baseURL = `https://dwelltogether-api.herokuapp.com/`;
 
 const token = localStorage.getItem("token");
 
@@ -86,7 +86,7 @@ export function signup({
         localStorage.setItem("token", user.token);
         dispatch({ type: "CREATE_USER", user });
         dispatch({ type: "SET_CURRENT_USER", user });
-        // dispatch({ type: "SET_HOUSEHOLD", user });
+        dispatch({ type: "SET_HOUSEHOLD", user });
         return user;
       });
   };

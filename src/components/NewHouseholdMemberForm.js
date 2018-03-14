@@ -54,7 +54,7 @@ class NewHouseholdMemberForm extends React.Component {
             />
           </label>
           <Button className="button" onClick={this.handleClick}>
-            Add Member to Household
+            Invite Member
           </Button>
         </Row>
       </div>
