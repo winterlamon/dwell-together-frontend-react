@@ -41,11 +41,7 @@ With this app, a user can:
 
 <p align=center><img src="/src/assets/screenshots/dwell-profile-start.png" alt="D'well Together profile page view upon account creation" /></p>
 
-<!-- <p align=center><img src="/src/assets/screenshots/dwell-members.png" alt="D'well Together dashboard displayed with search results" /></p>
-
-<p align=center><img src="/src/assets/screenshots/dwell-lists.png" alt="D'well Together profile with list of user's saved venues" /></p>
-
-<p align=center><img src="/src/assets/screenshots/dwell-visited-venue.png" alt="D'well Together list of user's saved venues with venue saved" /></p> -->
+<p align=center><img src="/src/assets/screenshots/dwell-lists.png" alt="D'well Together household lists page" /></p>
 
 ## Contributing
 
