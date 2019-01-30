@@ -1,4 +1,4 @@
-import { hashids } from "../actions";
+// import { hashids } from "../actions";
 
 export function authReducer(
   state = {
@@ -43,7 +43,8 @@ export function authReducer(
         currentUser: action.user,
         household: {
           ...action.user.household,
-          household_key: hashids.encode(action.user.household.id)
+          // household_key: hashids.encode(action.user.household.id)
+          household_key: action.user.household.id
         }
       };
     case "CREATE_USER":
@@ -104,7 +105,8 @@ export function authReducer(
         ...state,
         household: {
           ...action.household,
-          household_key: hashids.encode(action.household.id)
+          // household_key: hashids.encode(action.household.id)
+          household_key: action.household.id
         }
       };
     case "SET_HOUSEHOLD":
@@ -113,7 +115,8 @@ export function authReducer(
         loading: !state.loading,
         household: {
           ...action.user.household,
-          household_key: hashids.encode(state.currentUser.household.id)
+          // household_key: hashids.encode(state.currentUser.household.id)
+          household_key: state.currentUser.household.id
         }
       };
     case "REMOVE_HOUSEHOLD_USER":

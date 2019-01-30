@@ -1,4 +1,4 @@
-const baseURL = `https://dwelltogether-api.herokuapp.com/`;
+const baseURL = `localhost:3002`;
 
 const token = localStorage.getItem("token");
 
@@ -10,9 +10,8 @@ const headers = {
 
 // household id hashkey (6 characters) //
 
-var Hashids = require("hashids");
-export var hashids = new Hashids("Household", 6);
-// console.log(hashids.encode(1, 2, 3)); // Z4UrtW
+// const Hashids = require("hashids");
+// export const hashids = new Hashids("Household", 6);
 
 // ==== USERS ==== //
 
@@ -76,7 +75,8 @@ export function signup({
         first_name,
         last_name,
         username,
-        household_id: hashids.decode(household_key),
+        // household_id: hashids.decode(household_key),
+        household_id: household_key,
         email,
         password
       })
@@ -183,7 +183,8 @@ export function createHousehold(nickname) {
           type: "CREATE_HOUSEHOLD",
           household: {
             ...household,
-            household_key: hashids.encode(household.id)
+            // household_key: hashids.encode(household.id)
+            household_key: household.id
           }
         })
       );
